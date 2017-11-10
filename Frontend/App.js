@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Container } from "src/mixins";
+import { Container } from "./src/mixins";
 export default class App extends React.Component {
   render() {
     return (
