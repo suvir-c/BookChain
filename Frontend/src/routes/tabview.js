@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { View, StyleSheet } from "react-native";
 
-import { TabViewAnimated, TabBar, SceneMap } from "react-native-tab-view";
+import { TabViewAnimated, SceneMap } from "react-native-tab-view";
 
 import Feed from "../screens/feed.js";
 import UserView from "../screens/userview.js";

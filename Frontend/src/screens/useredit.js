@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default class UserProfile extends React.Component {
+export default class UserEdit extends React.Component {
   render() {
     return (
       <View>
-        <Text> UserProfile </Text>
+        <Text> UserEdit </Text>
       </View>
     );
   }

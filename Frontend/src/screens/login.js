@@ -1,4 +1,5 @@
 import React from "react";
+import { View, StyleSheet } from "react-native";
 import { Container } from "../mixins";
 export default class Login extends React.Component {
   render() {
@@ -8,6 +9,6 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    ...container
+    ...Container
   }
 });
