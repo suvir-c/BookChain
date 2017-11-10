@@ -1,4 +1,5 @@
 import React from "react";
+import { View, StyleSheet } from "react-native";
 import { Container } from "../mixins";
 import { Button } from 'react-native-elements';
 import {
@@ -70,5 +71,6 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'FFF',
     fontSize: 20,
+
   }
 });

@@ -1,7 +1,7 @@
 import React from "react";
 import { TabBar } from "react-native-tab-view";
 
-export default class TabBar extends React.Component {
+export default class MainTabBar extends React.Component {
   render() {
     <TabBar />;
   }
