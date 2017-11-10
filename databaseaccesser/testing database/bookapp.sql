@@ -28,7 +28,7 @@ CREATE TABLE Book(
     FOREIGN KEY fk1 (ownerID) REFERENCES Usertable(userID)
 );
 
-INSERT INTO Book(ownerID, title, author, picture, rating) VALUES(1, 'USC HISTROY','Tommy Trojan', 'null', '5');
+INSERT INTO Book(ownerID, title, author, picture, rating) VALUES(1, 'USC HISTORY','Tommy Trojan', 'null', '5');
 INSERT INTO Book(ownerID, title, author, picture, rating) VALUES(1, 'How to be awesom','Tommy Trojan', 'null', '3');
 INSERT INTO Book(ownerID, title, author, picture, rating) VALUES(2, 'How to dance like unicorn','Justin Bieber', 'null', '5');
 INSERT INTO Book(ownerID, title, author, picture, rating) VALUES(3, 'How to torture student','Satan', 'null', '5');
