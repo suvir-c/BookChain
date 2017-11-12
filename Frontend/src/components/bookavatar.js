@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ListItem } from "react-native";
 import PropTypes from "prop-types";
 import { Avatar } from "react-native-elements";
 export default class BookAvatar extends React.Component {
@@ -14,7 +14,8 @@ export default class BookAvatar extends React.Component {
           roundAvatar
           avatar={this.props.avatar}
           title={this.props.name}
-          subtitle={{this.props.author} + " | " + {this.props.rating} + " stars | " + {this.props.distance} + "MI"}/>
+          subtitle={this.props.author + " | " + this.props.rating + " stars | " + this.props.distance + "MI"}
+        />
       </View>
     );
   }
@@ -23,6 +24,7 @@ export default class BookAvatar extends React.Component {
 BookAvatar.propTypes = {
   name: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  distance: PropTypes.number.isRequired
+  rating: PropTypes.string.isRequired,
+  distance: PropTypes.string.isRequired,
+  avatar: PropTypes.string.isRequired
 };

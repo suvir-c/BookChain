@@ -32,7 +32,7 @@ export default class Login extends React.Component {
               <Text style={styles.loginPreview}>Email</Text>
             </View>
             <TextInput
-              autoCorrect="false"
+              autoCorrect={false}
         			autoCapitalize="none"
         			style={styles.loginInput}
         		/>
@@ -43,8 +43,8 @@ export default class Login extends React.Component {
             </View>
             <TextInput
               autoCapitalize="none"
-              autoCorrect="false"
-              secureTextEntry="true"
+              autoCorrect={false}
+              secureTextEntry={true}
               style={styles.loginInput}
             />
           </View>
