@@ -62,6 +62,7 @@ public class  databaseAccesser {
 		try {
 			st = conn.createStatement();
 			rs= st.executeQuery("SELECT * from Usertable where username='"+username +"' AND password='"+password+"'");
+			//if user exist, create such user class
 			if(rs.next()) {
 				ID = rs.getInt("userID");
 				picture = rs.getString("picture");
@@ -75,6 +76,7 @@ public class  databaseAccesser {
 		}finally{
 			close();
 		}
+		//will return null if search returns nothing
 		return currentUser;
 	}
 	
@@ -111,9 +113,11 @@ public class  databaseAccesser {
 				}
 		}
 		//TODO: Instead of return Boolean, return a Jsonfied user class.
+		//Create a new user and set the password and username
 		User newUser = new User();
 		newUser.setUsername(username);
 		newUser.setPassword(password);
+		//Find the id of this new user
 		int newUserID = 0;
 		try {
 			rs = st.executeQuery("SELECT * from Usertable where username='"+username+"' AND password='"+password+"'");
@@ -122,9 +126,10 @@ public class  databaseAccesser {
 			}
 		}catch(SQLException sqle) {
 			System.out.println(sqle.getMessage());
+		}finally {
+			close();
 		}
 		newUser.setUserID(newUserID);
-		close();
 		String json_newUser = Parser.userToJson(newUser);
 		System.out.println(json_newUser);
 		return json_newUser;
@@ -136,13 +141,16 @@ public class  databaseAccesser {
 		//FAIL CASE: username doesn't exist OR password doesn't match with the username.
 		public static String verifyUser(String username, String password) {
 			//TODO: Implementation
-			
+			//Inquire if username and password combination exist
 			User loginUser = inquireUser(username, password);
+			//If not, turn it into json
 			if(loginUser !=null) {
 				String json_User = Parser.userToJson(loginUser);
 				System.out.println(json_User);
 				return json_User;
-			}else {
+			}
+			//if exist, return a null user
+			else {
 				User emptyUser = new User();
 				String json_emptyUser = Parser.userToJson(emptyUser);
 				System.out.println(json_emptyUser);
@@ -161,6 +169,7 @@ public class  databaseAccesser {
 		try {
 			st=conn.createStatement();
 			rs = st.executeQuery("SELECT * from Usertable where name='"+name+"'");
+			//Finding all name that matches searchterm and add into booklist
 			while(rs.next()) {
 				String username = rs.getString("username");
 				String password = rs.getString("password");
@@ -177,6 +186,7 @@ public class  databaseAccesser {
 		}finally {
 			close();
 		}
+		//Chaning booklist into json string
 		String json_userList = Parser.userListToJson(userList);
 		System.out.println(json_userList);
 		return json_userList;
@@ -187,7 +197,7 @@ public class  databaseAccesser {
 	//output none
 	//update user info
 	public static void updateUser (int userID, String password, String name, String picture, String lastKnownPosition) {
-			//TODO: Find the user in userTable using userID, update all fields.
+		//TODO: Find the user in userTable using userID, update all fields.
 		connect();
 		try {
 			st = conn.createStatement();
@@ -201,25 +211,21 @@ public class  databaseAccesser {
 	
 	
 	//Invoke upon "Add Book".
+	//Input: take in book details
+	//Output: none
+	//Add book into book database
 	//TODO
-	static int addBook(int ownerID, String title, String author, String photoBlob, int rating) {
+	static void addBook(int ownerID, String title, String author, String photoBlob, int rating) {
 		connect();
-		int bookID = -1;
 		try{
 			st = conn.createStatement();
 			st.executeUpdate("INSERT INTO Book(ownerID, title, author, picture, rating) VALUES("+ownerID+", '"+title+"','"+author+"', '"+photoBlob+"', "+rating+")");
-			rs = st.executeQuery("SELECT * from Book where ownerID="+ownerID+" AND title='"+title+"'");
-			while(rs.next())
-			{
-				bookID = rs.getInt("bookID");
-			}
+			
 		}catch(SQLException sqle){
 			System.out.println ("sqle in addBook: " +  sqle.getMessage());
-			return -1;
 		}finally{
 			close();
 		}
-		return bookID;
 	}
 	
 	//Invoke upon "Get User Book List"
@@ -231,6 +237,7 @@ public class  databaseAccesser {
 		try{
 			st = conn.createStatement();
 			rs = st.executeQuery("SELECT * from Book where ownerID="+ownerID);
+			//While there is book that match the ownerID, create a book class and add it into booklist
 			while(rs.next())
 			{
 				int bookID = rs.getInt("bookID");
@@ -291,6 +298,7 @@ public class  databaseAccesser {
 		try {
 			st=conn.createStatement();
 			rs = st.executeQuery("SELECT * from book where title='"+bookName+"'");
+			//While there is book that matches the given book name, add them into book list
 			while(rs.next())
 			{
 				int bookID = rs.getInt("bookID");
@@ -307,6 +315,7 @@ public class  databaseAccesser {
 		}finally {
 			close();
 		}
+		//turn book list into json string
 		String json_bookList = Parser.bookListToJson(bookList);
 		System.out.println(json_bookList);
 		return json_bookList;
@@ -346,8 +355,6 @@ public class  databaseAccesser {
 	
 	public static void main(String args[]) {
 		//testing code
-		updateUser(1, "horse","T-Trojan","none","here");
-		updateUser(2, "whee", "Bon","wave", "there");
 	}
 	
 }
