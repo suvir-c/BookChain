@@ -10,107 +10,128 @@ import {
   TextInput,
   Button,
   TouchableOpacity
-} from 'react-native';
+} from "react-native";
+import { Actions } from "react-native-router-flux";
 export default class Signup extends React.Component {
+  toLogin() {
+    Actions.push("login");
+  }
   render() {
     return (
-        <View style={styles.container}>
-            <View style={styles.titleWrapper}>
-                <Text style={styles.titleText}>BookChain</Text>
-                <Text style={styles.subtitleText}>Decentralized, peer-to-peer book sharing</Text>
-            </View>
-            <View style={styles.loginWrapper}>
-                <View style={styles.loginInputWrapper}>
-                    <View style={styles.loginPreviewWrapper}>
-                        <Text style={styles.loginPreview}>Email</Text>
-                    </View>
-                    <TextInput style={styles.loginInput}/>
-                </View>
-                <View style={styles.loginInputWrapper}>
-                    <View style={styles.loginPreviewWrapper}>
-                        <Text style={styles.loginPreview}>Password</Text>
-                    </View>
-                    <TextInput autoCapitalize='none' secureTextEntry='true' style={styles.loginInput}/>
-                </View>
-                <View style={styles.loginInputWrapper}>
-                    <View style={styles.loginPreviewWrapper}>
-                        <Text style={styles.loginPreview}>Confirm Password</Text>
-                    </View>
-                    <TextInput autoCapitalize='none' secureTextEntry='true' style={styles.loginInput}/>
-                </View>
-            </View>
-            <TouchableOpacity activeOpacity={.5}>
-                <View style={styles.button}>
-                    <Text style={styles.buttonText} >SIGNUP</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.5}>
-                <View style={styles.createAccountWrapper}>
-                    <Text style={styles.createAccountButton}>Already have an account? Login</Text>
-                </View>
-            </TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.titleWrapper}>
+          <Text style={styles.titleText}>BookChain</Text>
+          <Text style={styles.subtitleText}>
+            Decentralized, peer-to-peer book sharing
+          </Text>
         </View>
-      );
+        <View style={styles.loginWrapper}>
+          <View style={styles.loginInputWrapper}>
+            <View style={styles.loginPreviewWrapper}>
+              <Text style={styles.loginPreview}>Email</Text>
+            </View>
+            <TextInput
+              autoCorrect="false"
+              autoCapitalize="none"
+              style={styles.loginInput} />
+          </View>
+          <View style={styles.loginInputWrapper}>
+            <View style={styles.loginPreviewWrapper}>
+              <Text style={styles.loginPreview}>Password</Text>
+            </View>
+            <TextInput
+              autoCorrect="false"
+              autoCapitalize="none"
+              secureTextEntry="true"
+              style={styles.loginInput}
+            />
+          </View>
+          <View style={styles.loginInputWrapper}>
+            <View style={styles.loginPreviewWrapper}>
+              <Text style={styles.loginPreview}>Confirm Password</Text>
+            </View>
+            <TextInput
+              autoCorrect="false"
+              autoCapitalize="none"
+              secureTextEntry="true"
+              style={styles.loginInput}
+            />
+          </View>
+        </View>
+        <TouchableOpacity activeOpacity={0.5}>
+          <View style={styles.button}>
+            <Text style={styles.buttonText}>SIGNUP</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.5} onPress={this.toLogin}>
+          <View style={styles.createAccountWrapper}>
+            <Text style={styles.createAccountButton}>
+              Already have an account? Login
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#C43E38',
+    backgroundColor: "#C43E38"
   },
   titleWrapper: {
     paddingVertical: 50,
-    alignItems: "center",
+    alignItems: "center"
   },
   titleText: {
     fontSize: 40,
-    color: 'white',
+    color: "white"
   },
   subtitleText: {
     fontSize: 12,
-    color: 'white',
+    color: "white"
   },
   loginWrapper: {
-    paddingVertical: 50,
+    paddingVertical: 50
   },
   loginInputWrapper: {
     paddingVertical: 10,
-    flexDirection: 'row',
+    flexDirection: "row",
     marginVertical: 10,
     height: 40,
     borderBottomWidth: 1,
-    borderBottomColor: '#3F9488',
+    borderBottomColor: "#3F9488"
   },
   loginPreviewWrapper: {
-    alignItems: "flex-start",
+    alignItems: "flex-start"
   },
   loginPreview: {
     fontSize: 12,
-    color: 'white',
+    color: "white"
   },
   loginInput: {
     flex: 1,
     paddingHorizontal: 10,
-    color: 'white',
+    color: "white"
   },
   button: {
-    backgroundColor: '#3F9488',
+    backgroundColor: "#3F9488",
     paddingVertical: 15,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 30,
+    marginTop: 30
   },
   buttonText: {
-    color: 'white',
-    fontSize: 20,
+    color: "white",
+    fontSize: 20
   },
   createAccountWrapper: {
     paddingVertical: 20,
-    alignItems: 'center',
+    alignItems: "center"
   },
   createAccountButton: {
     fontSize: 15,
-    color: 'white',
+    color: "white"
   }
 });
