@@ -11,7 +11,7 @@ import {
   Button,
   TouchableOpacity
 } from 'react-native';
-export default class Login extends React.Component {
+export default class Signup extends React.Component {
   render() {
     return (
         <View style={styles.container}>
@@ -24,7 +24,7 @@ export default class Login extends React.Component {
                     <View style={styles.loginPreviewWrapper}>
                         <Text style={styles.loginPreview}>Email</Text>
                     </View>
-                    <TextInput autoCapitalize='none' style={styles.loginInput}/>
+                    <TextInput style={styles.loginInput}/>
                 </View>
                 <View style={styles.loginInputWrapper}>
                     <View style={styles.loginPreviewWrapper}>
@@ -32,20 +32,21 @@ export default class Login extends React.Component {
                     </View>
                     <TextInput autoCapitalize='none' secureTextEntry='true' style={styles.loginInput}/>
                 </View>
+                <View style={styles.loginInputWrapper}>
+                    <View style={styles.loginPreviewWrapper}>
+                        <Text style={styles.loginPreview}>Confirm Password</Text>
+                    </View>
+                    <TextInput autoCapitalize='none' secureTextEntry='true' style={styles.loginInput}/>
+                </View>
             </View>
             <TouchableOpacity activeOpacity={.5}>
                 <View style={styles.button}>
-                    <Text style={styles.buttonText} >LOGIN</Text>
-                </View>
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.5}>
-                <View style={styles.button}>
-                    <Text style={styles.buttonText}>GUEST</Text>
+                    <Text style={styles.buttonText} >SIGNUP</Text>
                 </View>
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.5}>
                 <View style={styles.createAccountWrapper}>
-                    <Text style={styles.createAccountButton}>No account yet? Create one</Text>
+                    <Text style={styles.createAccountButton}>Already have an account? Login</Text>
                 </View>
             </TouchableOpacity>
         </View>
