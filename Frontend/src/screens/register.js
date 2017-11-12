@@ -30,13 +30,17 @@ export default class Signup extends React.Component {
             <View style={styles.loginPreviewWrapper}>
               <Text style={styles.loginPreview}>Email</Text>
             </View>
-            <TextInput style={styles.loginInput} />
+            <TextInput
+              autoCorrect="false"
+              autoCapitalize="none"
+              style={styles.loginInput} />
           </View>
           <View style={styles.loginInputWrapper}>
             <View style={styles.loginPreviewWrapper}>
               <Text style={styles.loginPreview}>Password</Text>
             </View>
             <TextInput
+              autoCorrect="false"
               autoCapitalize="none"
               secureTextEntry="true"
               style={styles.loginInput}
@@ -47,6 +51,7 @@ export default class Signup extends React.Component {
               <Text style={styles.loginPreview}>Confirm Password</Text>
             </View>
             <TextInput
+              autoCorrect="false"
               autoCapitalize="none"
               secureTextEntry="true"
               style={styles.loginInput}

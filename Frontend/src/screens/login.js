@@ -31,7 +31,11 @@ export default class Login extends React.Component {
             <View style={styles.loginPreviewWrapper}>
               <Text style={styles.loginPreview}>Email</Text>
             </View>
-            <TextInput autoCapitalize="none" style={styles.loginInput} />
+            <TextInput
+              autoCorrect="false"
+        			autoCapitalize="none"
+        			style={styles.loginInput}
+        		/>
           </View>
           <View style={styles.loginInputWrapper}>
             <View style={styles.loginPreviewWrapper}>
@@ -39,6 +43,7 @@ export default class Login extends React.Component {
             </View>
             <TextInput
               autoCapitalize="none"
+              autoCorrect="false"
               secureTextEntry="true"
               style={styles.loginInput}
             />
