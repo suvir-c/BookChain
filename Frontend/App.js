@@ -10,7 +10,13 @@ export default class App extends React.Component {
         <Stack key="root">
           <Scene key="login" component={Routes.Login} title="Login" />
           <Scene key="register" component={Routes.Register} title="Register" />
-          <Scene key="tabview" component={Routes.TabView} />
+          <Scene
+            key="tabview"
+            initial={true}
+            component={Routes.TabView}
+            headerMode="none"
+            hideNavBar={true}
+          />
           <Scene key="chat" component={Routes.Chat} />
           <Scene key="userview" component={Routes.UserView} />
           <Scene key="bookview" component={Routes.BookView} />

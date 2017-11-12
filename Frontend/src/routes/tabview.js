@@ -11,7 +11,7 @@ import Search from "../screens/search.js";
 import TabBar from "../components/tabbar.js";
 
 export default class TabView extends PureComponent {
-  status = {
+  state = {
     index: 0,
     routes: [
       { key: "0", title: "FEED" },
@@ -21,11 +21,11 @@ export default class TabView extends PureComponent {
     ]
   };
 
-  _handleIndexChange = index => this.setState({ index });
+  handleIndexChange = index => this.setState({ index });
 
-  _renderHeader = props => <TabBar />;
+  renderHeader = props => <TabBar {...props} />;
 
-  _renderScene = SceneMap({
+  renderScene = SceneMap({
     "0": Feed,
     "1": UserView,
     "2": ChatList,
@@ -37,9 +37,9 @@ export default class TabView extends PureComponent {
       <TabViewAnimated
         style={styles.container}
         navigationState={this.state}
-        renderScene={this._renderScene}
-        renderHeader={this._renderHeader}
-        onIndexChange={this._handleIndexChange}
+        renderScene={this.renderScene}
+        renderHeader={this.renderHeader}
+        onIndexChange={this.handleIndexChange}
       />
     );
   }
