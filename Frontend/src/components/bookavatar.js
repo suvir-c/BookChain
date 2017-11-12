@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Avatar } from "react-native-elements";
 export default class BookAvatar extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
@@ -14,7 +14,14 @@ export default class BookAvatar extends React.Component {
           roundAvatar
           avatar={this.props.avatar}
           title={this.props.name}
-          subtitle={this.props.author + " | " + this.props.rating + " stars | " + this.props.distance + "MI"}
+          subtitle={
+            this.props.author +
+            " | " +
+            this.props.rating +
+            " stars | " +
+            this.props.distance +
+            "MI"
+          }
         />
       </View>
     );

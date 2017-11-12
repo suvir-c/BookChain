@@ -4,7 +4,7 @@ import { View, StyleSheet } from "react-native";
 import { TabViewAnimated, SceneMap } from "react-native-tab-view";
 
 import Feed from "../screens/feed.js";
-import UserView from "../screens/userview.js";
+import UserEdit from "../screens/useredit.js";
 import ChatList from "../screens/chatlist.js";
 import Search from "../screens/search.js";
 
@@ -12,7 +12,7 @@ import TabBar from "../components/tabbar.js";
 
 export default class TabView extends PureComponent {
   state = {
-    index: 0,
+    index: 1,
     routes: [
       { key: "0", title: "FEED" },
       { key: "1", title: "USER" },
@@ -27,7 +27,7 @@ export default class TabView extends PureComponent {
 
   renderScene = SceneMap({
     "0": Feed,
-    "1": UserView,
+    "1": UserEdit,
     "2": ChatList,
     "3": Search
   });
