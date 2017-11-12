@@ -6,7 +6,7 @@ export default class UserAvatar extends React.Component {
   constructor(props) {
     super(props)
   }
-  
+
   render() {
     return (
       <View>
@@ -14,7 +14,7 @@ export default class UserAvatar extends React.Component {
             roundAvatar
             avatar={this.props.avatar}
             title={this.props.name}
-            subtitle={this.props.distance}
+            subtitle={{this.props.distance} + " MI"}
           />
       </View>
     );
