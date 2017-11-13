@@ -41,6 +41,7 @@ export default class UserEdit extends React.Component {
             />
           </View>
         </View>
+        <View />
       </View>
     );
   }

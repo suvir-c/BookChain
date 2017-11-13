@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, ListItem } from "react-native";
+import { View, Text } from "react-native";
 import PropTypes from "prop-types";
-import { Avatar } from "react-native-elements";
+import { Avatar, ListItem } from "react-native-elements";
 export default class BookAvatar extends React.Component {
   constructor(props) {
     super(props);
