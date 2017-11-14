@@ -16,32 +16,43 @@ export default class UserEdit extends React.Component {
     };
   }
   render() {
+    const book = {
+      name: "Some Book",
+      author: "Jimbo",
+      rating: 2
+    };
+    const books = [0, 0, 0, 0, 0].map(() => book);
+
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="blue" barStyle="light-content" />
-        <View style={styles.header}>
-          <Text h4> Edit Profile </Text>
-        </View>
-        <View style={styles.editContainer}>
-          <Avatar
-            large
-            rounded
-            source={{
-              uri:
-                "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"
-            }}
-            activeOpacity={0.7}
-          />
-          <View style={styles.nameInput}>
-            <FormLabel labelStyle={styles.labelStyle}>Name</FormLabel>
-            <TextInput
-              inputStyle={styles.inputStyle}
-              placeholder={this.state.name}
-              autoFocus={false}
+        <View>
+          <View style={styles.header}>
+            <Text h4> Edit Profile </Text>
+          </View>
+          <View style={styles.editContainer}>
+            <Avatar
+              large
+              rounded
+              source={{
+                uri:
+                  "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"
+              }}
+              activeOpacity={0.7}
             />
+            <View style={styles.nameInput}>
+              <FormLabel labelStyle={styles.labelStyle}>Name</FormLabel>
+              <FormInput
+                inputStyle={styles.inputStyle}
+                placeholder={this.state.name}
+                autoFocus={false}
+              />
+            </View>
           </View>
         </View>
-        <View />
+        <View>
+          <Text>Books</Text>
+        </View>
       </View>
     );
   }
@@ -51,23 +62,24 @@ const width = Dimensions.get("window").width;
 const styles = StyleSheet.create({
   container: {
     ...container,
-    display: "flex",
     flexDirection: "column",
+    alignItems: "center",
     justifyContent: "flex-start"
   },
   header: {
-    flex: 1,
+    flex: 0,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    height: 100
   },
   editContainer: {
-    flex: 1,
+    flex: 0,
+    height: 200,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center"
   },
   nameInput: {
-    flex: 1,
     width: width * 0.5,
     paddingHorizontal: 10
   },
@@ -75,6 +87,7 @@ const styles = StyleSheet.create({
     ...labelStyle
   },
   inputStyle: {
-    ...inputStyle
+    ...inputStyle,
+    width: width * 0.4
   }
 });

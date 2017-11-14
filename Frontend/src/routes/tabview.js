@@ -12,7 +12,7 @@ import TabBar from "../components/tabbar.js";
 
 export default class TabView extends PureComponent {
   state = {
-    index: 0,
+    index: 1,
     routes: [
       { key: "0", title: "FEED" },
       { key: "1", title: "USER" },
