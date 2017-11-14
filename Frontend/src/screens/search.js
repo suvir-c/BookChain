@@ -4,16 +4,16 @@ import { List, ListItem, SearchBar, ButtonGroup, CheckBox } from "react-native-e
 import BookAvatar from '../components/bookavatar.js';
 
 export default class Search extends React.Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     selectedIndex : 1
-  //   }
-  //   this.updateIndex = this.updateIndex.bind(this)
-  // }
-  // updateIndex(selectedIndex) {
-  //   this.setState({selectedIndex})
-  // }
+  constructor(props) {
+    super(props)
+    this.state = {
+      selectedIndex : 1
+    }
+    this.updateIndex = this.updateIndex.bind(this)
+  }
+  updateIndex(selectedIndex) {
+    this.setState({selectedIndex})
+  }
   render() {
     const list = [
       {
@@ -27,16 +27,16 @@ export default class Search extends React.Component {
     const buttons = [
       'Users', 'Books'
     ]
-    // const { selectedIndex } = this.state
+    const { selectedIndex } = this.state
     return (
       <View style={styles.screenWrapper}>
-        {/* <ButtonGroup
+        <ButtonGroup
           onPress={this.updateIndex}
           selectedIndex={selectedIndex}
           buttons={buttons}
-          containerStyle={{height:100}}
-        /> */}
-          <View style={styles.searchSelectorWrapper}>
+          containerStyle={{height:25}}
+        />
+          {/* <View style={styles.searchSelectorWrapper}>
             <CheckBox
               title='Users'
               checkedIcon= 'dot-circle-o'
@@ -51,7 +51,7 @@ export default class Search extends React.Component {
               iconRight
               style={styles.checkBox}
             />
-          </View>
+          </View> */}
           <SearchBar
             selectedBackgroundColor='white'
             containerStyle={styles.searchContainer}
