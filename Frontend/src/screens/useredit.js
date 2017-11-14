@@ -3,11 +3,20 @@ import {
   StyleSheet,
   StatusBar,
   View,
+  ScrollView,
   Dimensions,
-  TextInput
+  TextInput,
+  TouchableOpacity
 } from "react-native";
-import { Text, Avatar, FormLabel, FormInput } from "react-native-elements";
+import {
+  Text,
+  Avatar,
+  FormLabel,
+  FormInput,
+  List
+} from "react-native-elements";
 import { container, labelStyle, inputStyle } from "../mixins";
+import BookAvatar from "../components/bookavatarremove";
 export default class UserEdit extends React.Component {
   constructor(props) {
     super(props);
@@ -15,16 +24,18 @@ export default class UserEdit extends React.Component {
       name: props.name ? props.name : "Please Enter your name"
     };
   }
+  navigateToBook() {}
   render() {
     const book = {
       name: "Some Book",
+      distance: "1",
       author: "Jimbo",
-      rating: 2
+      rating: "2",
+      avatar: "test"
     };
     const books = [0, 0, 0, 0, 0].map(() => book);
-
     return (
-      <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         <StatusBar backgroundColor="blue" barStyle="light-content" />
         <View>
           <View style={styles.header}>
@@ -50,10 +61,29 @@ export default class UserEdit extends React.Component {
             </View>
           </View>
         </View>
-        <View>
-          <Text>Books</Text>
+        <View style={styles.fullWidth}>
+          <Text style={styles.subheader}>Books</Text>
+          <List
+            subtitleStyle={styles.subtitle}
+            containerStyle={styles.feedList}
+          >
+            {books.map((book, i) => {
+              return (
+                <TouchableOpacity activeOpacity={0.5} key={i}>
+                  <BookAvatar
+                    key={i}
+                    avatar={book.avatar}
+                    name={book.name}
+                    distance={book.distance}
+                    author={book.author}
+                    rating={book.rating}
+                  />
+                </TouchableOpacity>
+              );
+            })}
+          </List>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -89,5 +119,18 @@ const styles = StyleSheet.create({
   inputStyle: {
     ...inputStyle,
     width: width * 0.4
+  },
+  subheader: {
+    color: "white",
+    fontSize: 22
+  },
+  subtitle: {
+    color: "white"
+  },
+  fullWidth: {
+    width: width * 0.9
+  },
+  feedList: {
+    backgroundColor: "#D32F2F"
   }
 });

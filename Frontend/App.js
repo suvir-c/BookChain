@@ -14,12 +14,16 @@ export default class App extends React.Component {
             key="tabview"
             component={Routes.TabView}
             headerMode="none"
-            hideNavBar={true}
-            initial={true}
+            hideNavBar
           />
           <Scene key="chat" component={Routes.Chat} />
           <Scene key="userview" component={Routes.UserView} />
-          <Scene key="bookview" component={Routes.BookView} />
+          <Scene
+            initial={true}
+            key="bookview"
+            component={Routes.BookView}
+            hideNavBar
+          />
           <Scene key="bookedit" component={Routes.BookEdit} />
         </Stack>
       </Router>
