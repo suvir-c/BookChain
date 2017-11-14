@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, List, ListItem } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { List, ListItem } from "react-native-elements";
 import BookAvatar from '../components/bookavatar.js';
 import MainTabBar from '../components/tabbar.js';
 
@@ -20,18 +21,13 @@ export default class Feed extends React.Component {
     ]
     return (
       <View>
-        <BookAvatar
-          avatar="test"
-          name="jimbo"
-          distance="1"
-          author="jack"
-          rating="3"
-        />
-        {/* <List>
+        {/* <MainTabBar /> */}
+        <List subtitleStyle={styles.subtitle} containerStyle={styles.feedList}>
           {
               list.map((book, i) => {
-
-                return( <BookAvatar
+                return(
+                  <TouchableOpacity activeOpacity={0.5}>
+                  <BookAvatar
                   key={i}
                   avatar={book.avatar}
                   name={book.name}
@@ -39,10 +35,20 @@ export default class Feed extends React.Component {
                   author={book.author}
                   rating={book.rating}
                 />
+              </TouchableOpacity>
               )})
           }
-        </List> */}
+        </List>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+    feedList : {
+      backgroundColor: '#FF6659',
+    },
+    subtitle: {
+      color: 'white',
+    }
+});

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import PropTypes from "prop-types";
 import { Avatar, ListItem } from "react-native-elements";
 export default class BookAvatar extends React.Component {
@@ -10,7 +10,7 @@ export default class BookAvatar extends React.Component {
   render() {
     return (
       <View>
-        <ListItem
+        <ListItem style={styles.listItemStyle}
           roundAvatar
           avatar={this.props.avatar}
           title={this.props.name}
@@ -35,3 +35,11 @@ BookAvatar.propTypes = {
   distance: PropTypes.string.isRequired,
   avatar: PropTypes.string.isRequired
 };
+
+const styles = StyleSheet.create({
+    listItemStyle : {
+      backgroundColor: '#FF6659',
+      color: 'white',
+      borderColor: 'white'
+    }
+});
