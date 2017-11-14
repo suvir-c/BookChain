@@ -10,7 +10,7 @@ export default class BookAvatar extends React.Component {
   render() {
     return (
       <View>
-        <ListItem style={styles.listItemStyle}
+        <ListItem subtitleStyle={styles.subtitle} titleStyle={styles.title} style={styles.listItem}
           roundAvatar
           avatar={this.props.avatar}
           title={this.props.name}
@@ -37,9 +37,15 @@ BookAvatar.propTypes = {
 };
 
 const styles = StyleSheet.create({
-    listItemStyle : {
+    listItem : {
       backgroundColor: '#FF6659',
       color: 'white',
       borderColor: 'white'
+    },
+    title : {
+      color: 'white',
+    },
+    subtitle : {
+      color: 'white',
     }
 });

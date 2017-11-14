@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { List, ListItem } from "react-native-elements";
 import BookAvatar from '../components/bookavatar.js';
-import MainTabBar from '../components/tabbar.js';
 
 export default class Feed extends React.Component {
   constructor(props) {
@@ -20,21 +19,20 @@ export default class Feed extends React.Component {
       }
     ]
     return (
-      <View>
-        {/* <MainTabBar /> */}
-        <List subtitleStyle={styles.subtitle} containerStyle={styles.feedList}>
+      <View style={styles.listWrapper}>
+        <List containerStyle={styles.feedList}>
           {
               list.map((book, i) => {
                 return(
                   <TouchableOpacity activeOpacity={0.5}>
-                  <BookAvatar
-                  key={i}
-                  avatar={book.avatar}
-                  name={book.name}
-                  distance={book.distance}
-                  author={book.author}
-                  rating={book.rating}
-                />
+                    <BookAvatar
+                      key={i}
+                      avatar={book.avatar}
+                      name={book.name}
+                      distance={book.distance}
+                      author={book.author}
+                      rating={book.rating}
+                    />
               </TouchableOpacity>
               )})
           }
@@ -45,6 +43,9 @@ export default class Feed extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    listWrapper: {
+      backgroundColor: '#FF6659',
+    },
     feedList : {
       backgroundColor: '#FF6659',
     },
