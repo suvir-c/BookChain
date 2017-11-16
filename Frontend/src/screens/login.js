@@ -27,6 +27,9 @@ export default class Login extends React.Component {
   toRegister() {
     Actions.push("register");
   }
+  toGuest() {
+    Actions.pus("guest");
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -66,7 +69,7 @@ export default class Login extends React.Component {
             <Text style={styles.buttonText}>LOGIN</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.5}>
+        <TouchableOpacity activeOpacity={0.5} onPress={this.toGuest}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>GUEST</Text>
           </View>

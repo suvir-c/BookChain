@@ -11,8 +11,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "remote-redux-devtools";
 
 const ConnectedRouter = connect()(Router);
-// const store = createStore(Reducer, composeWithDevTools(applyMiddleware(thunk)));
-const store = createStore(Reducer, applyMiddleware(thunk));
+const store = createStore(Reducer, composeWithDevTools(applyMiddleware(thunk)));
 export default class App extends React.Component {
   render() {
     return (
@@ -40,6 +39,7 @@ export default class App extends React.Component {
             <Scene key="userview" component={Routes.UserView} />
             <Scene key="bookview" component={Routes.BookView} hideNavBar />
             <Scene key="bookedit" component={Routes.BookEdit} />
+            <Scene key="guest" component={Routes.Guest} />
           </Stack>
         </ConnectedRouter>
       </Provider>

@@ -11,13 +11,15 @@ export function login(email, pass) {
   console.log("login action called");
   return dispatch => {
     console.log("login action dispatched");
-    return callLoginApi(email, pass).then(data => {
-      if (data.user) {
-        Actions.push("tabview");
-        return dispatch(loginSuccess(data.user));
-      }
-      return dispatch(loginFailure());
-    });
+    return callLoginApi(email, pass)
+      .then(data => {
+        if (data.user) {
+          Actions.push("tabview");
+          return dispatch(loginSuccess(data.user));
+        }
+        return dispatch(loginFailure());
+      })
+      .catch(console.log);
   };
 }
 
@@ -35,7 +37,7 @@ export function loginFailure() {
 
 export function register(email, pass) {
   return dispatch => {
-    callRegisterApi(email, pass).then(data => {
+    return callRegisterApi(email, pass).then(data => {
       if (data.user) {
         dispatch(loginSuccess(data.user));
       } else {
