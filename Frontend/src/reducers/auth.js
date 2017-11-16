@@ -1,12 +1,17 @@
 import {
-  FETCH_LOGIN,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   REGISTER_SUCCESS,
   REGISTER_FAILURE
 } from "../constants/index";
 
-const authReducer = (state, action) => {
+const inititalState = {
+  user: {
+    email: "test@gmail.com"
+  }
+};
+
+const authReducer = (state = inititalState, action) => {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return Object.assign({}, state, {
@@ -22,13 +27,8 @@ const authReducer = (state, action) => {
       });
     case REGISTER_FAILURE:
       return Object.assign({}, state, { registerFailure: true });
-
     default:
-      return {
-        user: {
-          email: "initial.js"
-        }
-      };
+      return state;
   }
 };
 

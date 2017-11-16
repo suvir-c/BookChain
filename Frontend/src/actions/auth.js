@@ -5,18 +5,24 @@ import {
   REGISTER_SUCCESS
 } from "../constants";
 import { callLoginApi, callRegisterApi } from "../api/auth";
+import { Actions } from "react-native-router-flux";
 
 export function login(email, pass) {
+  console.log("login action called");
   return dispatch => {
-    callLoginApi(email, pass).then(data => {
-      if (data.user) {
-        dispatch(loginSuccess(data.user));
-      } else {
-        dispatch(loginFailure());
-      }
-    });
+    console.log("login action dispatched");
+    return callLoginApi(email, pass)
+      .then(data => {
+        if (data.user) {
+          Actions.push("tabview");
+          return dispatch(loginSuccess(data.user));
+        }
+        return dispatch(loginFailure());
+      })
+      .catch(console.log);
   };
 }
+
 export function loginSuccess(user) {
   return {
     type: LOGIN_SUCCESS,
@@ -31,7 +37,7 @@ export function loginFailure() {
 
 export function register(email, pass) {
   return dispatch => {
-    callRegisterApi(email, pass).then(data => {
+    return callRegisterApi(email, pass).then(data => {
       if (data.user) {
         dispatch(loginSuccess(data.user));
       } else {

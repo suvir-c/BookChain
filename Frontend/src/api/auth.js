@@ -1,14 +1,16 @@
 export function callLoginApi(email, pass) {
-  //TODO
-  return new Promise.resolve({
+  console.log("butwait");
+  return Promise.resolve({
     user: {
-      email: "test@gmail.com"
+      email: email,
+      pass: pass
     }
   });
 }
 
 export function callRegisterApi(email, pass) {
-  return new Promise.resolve({
-    email: "test@gmail.com"
+  return Promise.resolve({
+    email: email,
+    pass: pass
   });
 }
