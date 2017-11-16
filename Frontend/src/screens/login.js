@@ -14,6 +14,9 @@ import {
 import { Actions } from "react-native-router-flux";
 
 export default class Login extends React.Component {
+  login() {
+    this.props.login();
+  }
   toRegister() {
     Actions.push("register");
   }
@@ -33,9 +36,9 @@ export default class Login extends React.Component {
             </View>
             <TextInput
               autoCorrect={false}
-        			autoCapitalize="none"
-        			style={styles.loginInput}
-        		/>
+              autoCapitalize="none"
+              style={styles.loginInput}
+            />
           </View>
           <View style={styles.loginInputWrapper}>
             <View style={styles.loginPreviewWrapper}>
@@ -49,7 +52,7 @@ export default class Login extends React.Component {
             />
           </View>
         </View>
-        <TouchableOpacity activeOpacity={0.5}>
+        <TouchableOpacity activeOpacity={0.5} onPress={() => this.login()}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>LOGIN</Text>
           </View>

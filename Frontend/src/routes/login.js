@@ -5,8 +5,8 @@ import { connect } from "react-redux";
 
 class LoginRouter extends React.Component {
   render() {
-    let { auth } = this.props;
-    return <Login auth={auth} />;
+    let { auth, login } = this.props;
+    return <Login auth={auth} login={login} />;
   }
 }
 

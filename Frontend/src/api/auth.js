@@ -1,7 +1,9 @@
 export function callLoginApi(email, pass) {
   //TODO
   return new Promise.resolve({
-    email: "test@gmail.com"
+    user: {
+      email: "test@gmail.com"
+    }
   });
 }
 

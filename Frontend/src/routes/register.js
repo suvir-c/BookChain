@@ -2,7 +2,7 @@ import Register from "../screens/register";
 import React from "react";
 import { register } from "../actions/auth";
 import { connect } from "react-redux";
-export default class RegisterRouter extends React.Component {
+class RegisterRouter extends React.Component {
   render() {
     let { auth } = this.props;
     return <Register auth={auth} />;

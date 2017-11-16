@@ -24,8 +24,12 @@ const authReducer = (state, action) => {
       return Object.assign({}, state, { registerFailure: true });
 
     default:
-      return state;
+      return {
+        user: {
+          email: "initial.js"
+        }
+      };
   }
 };
 
-export default (authReducer = (state = 1, action) => state);
+export default authReducer;
