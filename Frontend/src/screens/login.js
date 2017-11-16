@@ -14,8 +14,15 @@ import {
 import { Actions } from "react-native-router-flux";
 
 export default class Login extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: ""
+    };
+  }
   login() {
-    this.props.login();
+    this.props.login(this.state.email, this.state.password);
   }
   toRegister() {
     Actions.push("register");
@@ -38,6 +45,7 @@ export default class Login extends React.Component {
               autoCorrect={false}
               autoCapitalize="none"
               style={styles.loginInput}
+              onChangeText={email => this.setState({ email })}
             />
           </View>
           <View style={styles.loginInputWrapper}>
@@ -49,6 +57,7 @@ export default class Login extends React.Component {
               autoCorrect={false}
               secureTextEntry={true}
               style={styles.loginInput}
+              onChangeText={password => this.setState({ password })}
             />
           </View>
         </View>

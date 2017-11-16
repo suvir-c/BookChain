@@ -3,14 +3,16 @@ import { StyleSheet, Text, View } from "react-native";
 import { Container } from "./src/mixins";
 import Routes from "./src/routes";
 import { Router, Stack, Scene } from "react-native-router-flux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider, connect } from "react-redux";
 import Reducer from "./src/reducers";
-import devToolsEnhancer from "remote-redux-devtools";
+import thunk from "redux-thunk";
+
+import { composeWithDevTools } from "remote-redux-devtools";
 
 const ConnectedRouter = connect()(Router);
-const store = createStore(Reducer, devToolsEnhancer);
-
+// const store = createStore(Reducer, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(Reducer, applyMiddleware(thunk));
 export default class App extends React.Component {
   render() {
     return (

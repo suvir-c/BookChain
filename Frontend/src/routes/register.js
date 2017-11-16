@@ -4,8 +4,8 @@ import { register } from "../actions/auth";
 import { connect } from "react-redux";
 class RegisterRouter extends React.Component {
   render() {
-    let { auth } = this.props;
-    return <Register auth={auth} />;
+    let { auth, register } = this.props;
+    return <Register auth={auth} register={register} />;
   }
 }
 
@@ -16,7 +16,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    register
+    register: dispatch(register)
   };
 };
 

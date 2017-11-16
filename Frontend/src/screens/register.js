@@ -13,6 +13,16 @@ import {
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 export default class Signup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: ""
+    };
+  }
+  register() {
+    this.props.register(this.state.email, this.state.password);
+  }
   toLogin() {
     Actions.push("login");
   }
@@ -33,7 +43,9 @@ export default class Signup extends React.Component {
             <TextInput
               autoCorrect={false}
               autoCapitalize="none"
-              style={styles.loginInput} />
+              style={styles.loginInput}
+              onChangeText={email => this.setState({ email })}
+            />
           </View>
           <View style={styles.loginInputWrapper}>
             <View style={styles.loginPreviewWrapper}>
@@ -44,6 +56,7 @@ export default class Signup extends React.Component {
               autoCapitalize="none"
               secureTextEntry={true}
               style={styles.loginInput}
+              onChangeText={password => this.setState({ password })}
             />
           </View>
           <View style={styles.loginInputWrapper}>
@@ -58,7 +71,7 @@ export default class Signup extends React.Component {
             />
           </View>
         </View>
-        <TouchableOpacity activeOpacity={0.5}>
+        <TouchableOpacity activeOpacity={0.5} onPress={() => this.register()}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>SIGNUP</Text>
           </View>
