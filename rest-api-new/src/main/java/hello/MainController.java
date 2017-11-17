@@ -37,7 +37,7 @@ public class MainController {
 		userToAdd.setUsername(username);
 		userToAdd.setPassword(password);
 		userRepository.save(userToAdd);
-		return "Saved";
+		return "Saved new user: " + username + "\n";
 	}
 	
 	@GetMapping(path="/addBook") 
@@ -48,6 +48,7 @@ public class MainController {
 		// @RequestParam means it is a parameter from the GET or POST request
 // 		Book bookToAdd = new Book(bookID, ownerID, author, rating, title, picture, longitude, latitude);
 		Book bookToAdd = new Book();
+		bookToAdd.setOwnerID(ownerID);
 		bookToAdd.setAuthor(author);
 		bookToAdd.setRating(rating);
 		bookToAdd.setTitle(title);
@@ -55,7 +56,7 @@ public class MainController {
 		bookToAdd.setLongitude(longitude);
 		bookToAdd.setLatitude(latitude);
 		bookRepository.save(bookToAdd);
-		return "Saved";
+		return "Saved new book: " + title + "\n";
 	}
 
 	@GetMapping(path="/allUsers")
@@ -96,17 +97,58 @@ public class MainController {
 	@GetMapping(path="/updateUserBookLocations")
 	public @ResponseBody String updateUserBookLocations(@RequestParam int userID
 	, @RequestParam double longitude, @RequestParam double latitude) {
-		List<Book> userBooks = bookRepository.findByOwnerID(userID);
-		if(userBooks == null) {
-			return "User's books not found";
-		}
+		Iterable<Book> userBooksIterable = bookRepository.findByOwnerID(userID);
+		
+		List<Book> userBooks = new ArrayList<Book>();
+		userBooksIterable.forEach(userBooks::add);
+		
 		for(Book book : userBooks) {
-			book.setLatitude(latitude);
-			book.setLongitude(longitude);
-			bookRepository.save(book);
-			System.out.println("updating books");	
+			if(book.getOwnerID() == userID) {
+				book.setLatitude(latitude);
+				book.setLongitude(longitude);
+				bookRepository.save(book);
+			}
 		}
-		System.out.println("number of books: " + userBooks.size());
-		return "User's books updated";
+		if(userBooks.size() > 0) {
+			return userBooks.size() + " book(s) updated for userID: " + userID + "\n";
+		}
+		else {
+			return "No books found for specified user ID\n";
+		}
+
 	}
+	
+	//Invoke upon "Search Users", return a jsonfied user list for front end.
+	//Input: the Name typed by the user.
+	//Output: If success, return all the users in JSON. If fail, return empty user list in JSON		
+	//FAIL CASE: No instances of such a Name in userTable.
+	// return and test (currently create user does not add a name field)
+	@GetMapping(path="/searchUsers")
+	public @ResponseBody Iterable<User> searchUsers(@RequestParam String name) {
+		return userRepository.findByName(name);
+	}
+	
+	@GetMapping(path="/updateUser")
+	public @ResponseBody String updateUser(@RequestParam int userID, @RequestParam String password
+		, @RequestParam String name, @RequestParam String picture) {
+		User userToUpdate = userRepository.findByUserID(userID);
+		if(userToUpdate == null) {
+			return "User: " + userID + " not found \n";
+		}
+		if(userToUpdate.getPassword().equals(password)) {
+			userToUpdate.setName(name);
+			userToUpdate.setPicture(picture);
+			userRepository.save(userToUpdate);
+			return "User: " + userID + " updated \n";
+		}
+		else {
+			return "Invalid password for user: " + userID + "\n";
+		}
+	}
+	
+	@GetMapping(path="/getUserBookList")
+	public @ResponseBody Iterable<Book> getUserBookList(@RequestParam int ownerID) {
+		return bookRepository.findByOwnerID(ownerID);
+	}
+	
 }
