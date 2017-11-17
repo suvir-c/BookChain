@@ -1,4 +1,4 @@
-# Final Project REST API - Java Spring Boot Web Application
+# REST API - Java Spring Boot Backend 
 
 This is the backend of our mobile application, a RESTful web service implemented using Java Spring Boot.
 
