@@ -1,3 +1,10 @@
+import { SET_BOOKS, SET_USERS } from "../constants";
+
+const initialState = {
+  books: [],
+  users: []
+};
+
 const searchReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_BOOKS:
@@ -12,3 +19,5 @@ const searchReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export default searchReducer;

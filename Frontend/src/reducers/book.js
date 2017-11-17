@@ -1,4 +1,4 @@
-import { ADD_BOOK, REMOVE_BOOK } from "../constants";
+import { ADD_BOOK, REMOVE_BOOK, SET_BOOKS } from "../constants";
 
 const initialState = {
   books: []
@@ -14,7 +14,13 @@ const bookReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         books: books.splice(action.index, 1)
       });
+    case SET_BOOKS:
+      return Object.assign({}, state, {
+        books: action.bookList
+      });
     default:
       return state;
   }
 };
+
+export default bookReducer;

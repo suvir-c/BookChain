@@ -6,6 +6,7 @@ export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
 export const ADD_BOOK = "ADD_BOOK";
 export const REMOVE_BOOK = "REMOVE_BOOK";
+export const SET_BOOKS = "SET_BOOKS";
 
 export const SET_SEARCH_BOOKS = "SET_SEARCH_BOOKS";
 export const SET_SEARCH_USERS = "SET_SEARCH_USERS";
