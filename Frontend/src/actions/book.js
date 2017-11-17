@@ -1,13 +1,11 @@
-import { ADD_BOOK, REMOVE_BOOK } from "../constants";
+import { ADD_BOOK, REMOVE_BOOK, SET_BOOKS } from "../constants";
 
 import { getBooksApi, deleteBookApi } from "../api/book";
 
 export function getBooksNearby(location) {
   return dispatch => {
     return getBooksApi(location).then(data => {
-      data.books.map(book => {
-        dispatch(addBookAction(book));
-      });
+      dispatch(setNearbyBooksAction(data.books));
     });
   };
 }
@@ -29,5 +27,11 @@ export function deleteBookAction(bookIndex) {
   return {
     type: REMOVE_BOOK,
     bookID
+  };
+}
+export function setNearbyBooksAction(bookList) {
+  return {
+    type: SET_BOOKS,
+    bookList
   };
 }

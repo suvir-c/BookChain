@@ -28,7 +28,7 @@ export default class Login extends React.Component {
     Actions.push("register");
   }
   toGuest() {
-    Actions.pus("guest");
+    Actions.push("guest");
   }
   render() {
     return (

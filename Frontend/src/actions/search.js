@@ -1,5 +1,5 @@
 import { SET_SEARCH_BOOKS, SET_SEARCH_USERS } from "../constants";
-import { callBookSearchApi, callBookSearchApi } from "../api/search";
+import { callBookSearchApi, callUserSearchApi } from "../api/search";
 
 export function searchBooks(bookname) {
   return dispatch => {
@@ -18,7 +18,7 @@ export function setSearchBooks(books) {
 
 export function userUsers(username) {
   return dispatch => {
-    return callBookSearchApi(username).then(data => {
+    return callUserSearchApi(username).then(data => {
       dispatch(setSearchBooks(data.users));
     });
   };
