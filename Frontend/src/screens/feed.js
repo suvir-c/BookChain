@@ -21,7 +21,7 @@ export default class Feed extends React.Component {
             return (
               <TouchableOpacity
                 activeOpacity={0.5}
-                onPress={book => this.toBookView(book)}
+                onPress={() => this.toBookView(book)}
               >
                 <BookAvatar
                   key={i}
