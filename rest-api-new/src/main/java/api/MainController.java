@@ -45,9 +45,7 @@ public class MainController {
 	public @ResponseBody String addNewBook (@RequestParam int ownerID
 			, @RequestParam String author, @RequestParam int rating, @RequestParam String title
 			, @RequestParam String picture, @RequestParam double longitude, @RequestParam double latitude) {
-		// @ResponseBody means the returned String is the response, not a view name
-		// @RequestParam means it is a parameter from the GET or POST request
-// 		Book bookToAdd = new Book(bookID, ownerID, author, rating, title, picture, longitude, latitude);
+
 		Book bookToAdd = new Book();
 		bookToAdd.setOwnerID(ownerID);
 		bookToAdd.setAuthor(author);
@@ -62,7 +60,7 @@ public class MainController {
 
 	@GetMapping(path="/allUsers")
 	public @ResponseBody Iterable<User> getAllUsers() {
-		// This returns a JSON or XML with the users
+
 		return userRepository.findAll();
 	}
 	
@@ -93,8 +91,6 @@ public class MainController {
 		return userToVerify;
 	}
 	
-	//TODO: update user location simply by user Id
-	
 	@GetMapping(path="/updateUserBookLocations")
 	public @ResponseBody String updateUserBookLocations(@RequestParam int userID
 	, @RequestParam double longitude, @RequestParam double latitude) {
@@ -123,7 +119,6 @@ public class MainController {
 	//Input: the Name typed by the user.
 	//Output: If success, return all the users in JSON. If fail, return empty user list in JSON		
 	//FAIL CASE: No instances of such a Name in userTable.
-	// return and test (currently create user does not add a name field)
 	@GetMapping(path="/searchUsers")
 	public @ResponseBody Iterable<User> searchUsers(@RequestParam String name) {
 		return userRepository.findByName(name);
@@ -157,7 +152,6 @@ public class MainController {
 	//Input: the bookName typed by the user.
 	//Output: If success, return all the books in JSON. If fail, return empty booklist in JSON
 	//FAIL CASE: No instances of such a bookName in bookTable.
-	//TODO2: Calculate distance, sort
 	@GetMapping(path="/searchBooks")
 	public @ResponseBody Iterable<Book> searchBooks(@RequestParam String title, @RequestParam int userID) {
 		Iterable<Book> matchedBooksIterable = bookRepository.findByTitle(title);
@@ -211,7 +205,6 @@ public class MainController {
 	
 	}
 	
-	//TODO2: Implementation
 	//Input: userID
 	//Output: JSON String of booklist, sorted in distance
 	@GetMapping(path="/getNearbyBooks")
@@ -254,15 +247,11 @@ public class MainController {
 		}
 		return (dist);
 	}
-	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-	/*::  This function converts decimal degrees to radians             :*/
-	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
 	private static double deg2rad(double deg) {
 		return (deg * Math.PI / 180.0);
 	}
-	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
-	/*::  This function converts radians to decimal degrees             :*/
-	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+
 	private static double rad2deg(double rad) {
 		return (rad * 180.0 / Math.PI);
 	}
