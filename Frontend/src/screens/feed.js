@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { List, ListItem } from "react-native-elements";
 import BookAvatar from "../components/bookavatar.js";
+import { Actions } from "react-native-router-flux";
 
 export default class Feed extends React.Component {
   constructor(props) {
@@ -9,13 +10,19 @@ export default class Feed extends React.Component {
     console.log(props);
     props.getBooksNearby();
   }
+  toBookView(book) {
+    Actions.push("bookview", { book });
+  }
   render() {
     return (
       <View style={styles.listWrapper}>
         <List containerStyle={styles.feedList}>
           {this.props.books.map((book, i) => {
             return (
-              <TouchableOpacity activeOpacity={0.5}>
+              <TouchableOpacity
+                activeOpacity={0.5}
+                onPress={book => this.toBookView(book)}
+              >
                 <BookAvatar
                   key={i}
                   avatar={book.avatar}

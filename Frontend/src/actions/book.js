@@ -29,9 +29,9 @@ export function deleteBookAction(bookIndex) {
     bookID
   };
 }
-export function setNearbyBooksAction(bookList) {
+export function setNearbyBooksAction(books) {
   return {
     type: SET_BOOKS,
-    bookList
+    books
   };
 }

@@ -1,8 +1,8 @@
 import { SET_BOOKS, SET_USERS } from "../constants";
 
 const initialState = {
-  books: [],
-  users: []
+  books: [{}],
+  users: [{}]
 };
 
 const searchReducer = (state = initialState, action) => {
