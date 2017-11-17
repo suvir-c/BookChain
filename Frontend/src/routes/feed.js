@@ -1,7 +1,22 @@
 import Feed from "../screens/feed";
 import React from "react";
-export default class FeedRouter extends React.Component {
+import { getBooksNearby } from "../actions/book";
+import { connect } from "react-redux";
+class FeedRoute extends React.Component {
   render() {
-    return <Feed />;
+    let { getBooksNearby, books } = this.props;
+    return <Feed getBooksNearby={getBooksNearby} books={books} />;
   }
 }
+const mapStateToProps = state => {
+  return {
+    books: state.book.books
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    getBooksNearby: () => dispatch(getBooksNearby())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FeedRoute);

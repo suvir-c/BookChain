@@ -18,12 +18,7 @@ export default class App extends React.Component {
       <Provider store={store}>
         <ConnectedRouter>
           <Stack key="root">
-            <Scene
-              key="login"
-              component={Routes.Login}
-              title="Login"
-              initial={true}
-            />
+            <Scene key="login" component={Routes.Login} title="Login" />
             <Scene
               key="register"
               component={Routes.Register}
@@ -34,6 +29,7 @@ export default class App extends React.Component {
               component={Routes.TabView}
               headerMode="none"
               hideNavBar
+              initial={true}
             />
             <Scene key="chat" component={Routes.Chat} />
             <Scene key="userview" component={Routes.UserView} />

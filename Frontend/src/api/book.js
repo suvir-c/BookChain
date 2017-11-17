@@ -1,10 +1,10 @@
-export function getBooks() {
+export function getBooksApi(location) {
   return new Promise.resolve({
     books: [
       {
         name: "test",
         distance: "1",
-        author: "jimbo",
+        author: "wootwoot",
         rating: "2",
         avatar: "test"
       },
@@ -18,6 +18,6 @@ export function getBooks() {
     ]
   });
 }
-export function deleteBook(bookID) {
+export function deleteBookApi(bookID) {
   // TODO
 }
