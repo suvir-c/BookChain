@@ -1,10 +1,11 @@
-import Search from "../screens/guest";
+import Search from "../screens/search";
 import React from "react";
 import { connect } from "react-redux";
 import { searchBooks, searchUsers } from "../actions/search";
 class SearchRoute extends React.Component {
   render() {
     let { search, searchBooks, searchUsers } = this.props;
+    console.log(search);
     return (
       <Search
         search={search}
@@ -26,4 +27,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(connect);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchRoute);

@@ -16,7 +16,7 @@ const bookReducer = (state = initialState, action) => {
       });
     case SET_BOOKS:
       return Object.assign({}, state, {
-        books: action.bookList
+        books: action.books
       });
     default:
       return state;

@@ -5,14 +5,14 @@ import { TabViewAnimated, SceneMap } from "react-native-tab-view";
 
 import Feed from "../routes/feed.js";
 import UserEdit from "../screens/useredit.js";
-import Search from "../screens/search.js";
+import Search from "../routes/search.js";
 
 import TabBar from "../components/tabbar.js";
 import { connect } from "react-redux";
 
 class TabView extends PureComponent {
   state = {
-    index: 1,
+    index: 0,
     routes: [
       { key: "0", title: "FEED" },
       { key: "1", title: "USER" },

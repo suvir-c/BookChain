@@ -20,18 +20,14 @@ export default class Search extends React.Component {
   updateIndex(selectedIndex) {
     this.setState({ selectedIndex });
   }
+  toBookView(book) {
+    Actions.push("bookview", { book });
+  }
   render() {
-    const list = [
-      {
-        name: "test",
-        distance: "1",
-        author: "jimbo",
-        rating: "2",
-        avatar: "test"
-      }
-    ];
     const buttons = ["Users", "Books"];
     const { selectedIndex } = this.state;
+    const { search } = this.props;
+    console.log(search);
     return (
       <View style={styles.screenWrapper}>
         <ButtonGroup
@@ -48,9 +44,12 @@ export default class Search extends React.Component {
         <View>
           {this.state.selectedIndex == 1 && (
             <List containerStyle={styles.searchList}>
-              {this.props.books.map((result, i) => {
+              {search.books.map((result, i) => {
                 return (
-                  <TouchableOpacity activeOpacity={0.5}>
+                  <TouchableOpacity
+                    activeOpacity={0.5}
+                    onPress={book => this.toBookView(book)}
+                  >
                     <BookAvatar
                       key={i}
                       avatar={result.avatar}
