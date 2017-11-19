@@ -8,6 +8,8 @@ import {
   CheckBox
 } from "react-native-elements";
 import BookAvatar from "../components/bookavatar.js";
+import UserAvatar from "../components/useravatar.js";
+import { Actions } from "react-native-router-flux";
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -22,6 +24,9 @@ export default class Search extends React.Component {
   }
   toBookView(book) {
     Actions.push("bookview", { book });
+  }
+  toUserView(user, books) {
+    Actions.push("userview", { user, books });
   }
   render() {
     const buttons = ["Users", "Books"];
@@ -60,6 +65,25 @@ export default class Search extends React.Component {
                     />
                   </TouchableOpacity>
                 );
+              })}
+            </List>
+          )}
+          {this.state.selectedIndex == 0 && (
+            <List containerStyle={styles.searchList}>
+              {search.users.map((result, i) => {
+                return (
+                  <TouchableOpacity
+                    activeOpacity={0.5}
+                    onPress={user => this.toUserView(user)}
+                  >
+                    <UserAvatar
+                      key={i}
+                      avatar={result.avatar}
+                      name={result.name}
+                      distance={result.distance}
+                    />
+                  </TouchableOpacity>
+                )
               })}
             </List>
           )}
