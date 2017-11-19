@@ -3,9 +3,10 @@ import { callBookSearchApi, callUserSearchApi } from "../api/search";
 
 export function searchBooks(bookname) {
   return dispatch => {
-    return callBookSearchApi(bookname).then(data => {
-      dispatch(setSearchBooks(data.books));
-    });
+    return callBookSearchApi(bookname, 5)
+      .then(data => {
+        return dispatch(setSearchBooks(data));
+    })
   };
 }
 
@@ -16,15 +17,16 @@ export function setSearchBooks(books) {
   };
 }
 
-export function userUsers(username) {
+export function searchUsers(username) {
   return dispatch => {
-    return callUserSearchApi(username).then(data => {
-      dispatch(setSearchBooks(data.users));
-    });
+    return callUserSearchApi(username)
+      .then(data => {
+        return dispatch(setSearchUsers(data));
+    })
   };
 }
 
-export function setUserBooks(users) {
+export function setSearchUsers(users) {
   return {
     type: SET_SEARCH_USERS,
     users

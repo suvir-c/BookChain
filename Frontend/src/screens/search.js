@@ -8,6 +8,7 @@ import {
   CheckBox
 } from "react-native-elements";
 import BookAvatar from "../components/bookavatar.js";
+import UserAvatar from "../components/useravatar.js";
 import { Actions } from "react-native-router-flux";
 
 export default class Search extends React.Component {
@@ -24,8 +25,8 @@ export default class Search extends React.Component {
   toBookView(book) {
     Actions.push("bookview", { book });
   }
-  toUserView(user) {
-    Actions.push("userview", { user });
+  toUserView(user, books) {
+    Actions.push("userview", { user, books });
   }
   searchBooks(term) {
     this.props.searchBooks(term);
@@ -58,7 +59,7 @@ export default class Search extends React.Component {
           onChangeText={text => this.searchOnChange(text)}
         />
         <View>
-          {this.state.selectedIndex == 1 && (
+          {search.books && this.state.selectedIndex == 1 && (
             <List containerStyle={styles.searchList}>
               {search.books.map((result, i) => {
                 return (
@@ -69,14 +70,33 @@ export default class Search extends React.Component {
                   >
                     <BookAvatar
                       key={i}
-                      avatar={result.avatar}
-                      name={result.name}
+                      avatar={result.picture}
+                      name={result.title}
                       distance={result.distance}
                       author={result.author}
                       rating={result.rating}
                     />
                   </TouchableOpacity>
                 );
+              })}
+            </List>
+          )}
+          {search.users && this.state.selectedIndex == 0 && (
+            <List containerStyle={styles.searchList}>
+              {search.users.map((result, i) => {
+                return (
+                  <TouchableOpacity
+                    activeOpacity={0.5}
+                    onPress={user => this.toUserView(user)}
+                  >
+                    <UserAvatar
+                      key={i}
+                      avatar={result.avatar}
+                      name={result.name}
+                      distance={result.distance}
+                    />
+                  </TouchableOpacity>
+                )
               })}
             </List>
           )}
