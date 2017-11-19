@@ -21,3 +21,7 @@ export function getBooksApi(location) {
 export function deleteBookApi(bookID) {
   return new Promise.resolve();
 }
+
+export function callCreateBookApi(userID, book) {
+  return Promise.resolve();
+}

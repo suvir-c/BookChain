@@ -34,3 +34,6 @@ export function callRegisterApi(email, pass) {
     ]
   });
 }
+export function callCreateBookApi(userID, book) {
+  return Promise.resolve();
+}

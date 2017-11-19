@@ -3,7 +3,8 @@ import {
   LOGIN_FAILURE,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
-  REMOVE_BOOK
+  REMOVE_BOOK,
+  CREATE_BOOK
 } from "../constants/index";
 
 const inititalState = {
@@ -14,6 +15,7 @@ const inititalState = {
 };
 
 const authReducer = (state = inititalState, action) => {
+  let books, newState;
   switch (action.type) {
     case LOGIN_SUCCESS:
       return Object.assign({}, state, {
@@ -30,7 +32,7 @@ const authReducer = (state = inititalState, action) => {
     case REGISTER_FAILURE:
       return Object.assign({}, state, { registerFailure: true });
     case REMOVE_BOOK:
-      let books = [
+      books = [
         ...state.user.books.slice(0, action.index),
         ...state.user.books.slice(action.index + 1)
       ];
@@ -38,10 +40,16 @@ const authReducer = (state = inititalState, action) => {
       newState.ts = new Date().getTime(); // Triggers shallow update
       newState.user.books = books;
       return newState;
+    case CREATE_BOOK:
+      books = state.user.books.slice();
+      books.push(action.book);
+      newState = Object.assign({}, state);
+      newState.ts = new Date().getTime(); // Triggers shallow update
+      newState.user.books = books;
+      return newState;
     default:
       return state;
   }
-  return state;
 };
 
 export default authReducer;

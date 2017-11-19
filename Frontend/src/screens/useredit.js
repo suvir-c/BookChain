@@ -18,6 +18,7 @@ import {
 import { container, labelStyle, inputStyle } from "../mixins";
 import BookAvatarRemove from "../components/bookavatarremove";
 import { Actions } from "react-native-router-flux";
+import ActionButton from "react-native-action-button";
 export default class UserEdit extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +34,11 @@ export default class UserEdit extends React.Component {
     Actions.push("bookview", { book });
   }
   getInitials() {
-    return this.state.name.split(" ")[0][0] + this.state.name.split(" ")[0][1];
+    return this.state.name.split(" ")[0][0] + this.state.name.split(" ")[1][0];
+  }
+  toCreateBookView() {
+    let createBook = this.props.createBook.bind(this, this.props.user.id);
+    Actions.push("bookedit", { createBook });
   }
 
   navigateToBook() {}
@@ -68,7 +73,7 @@ export default class UserEdit extends React.Component {
             subtitleStyle={styles.subtitle}
             containerStyle={styles.feedList}
           >
-            {this.props.user.books.map((book, i) => {
+            {this.props.books.map((book, i) => {
               return (
                 <BookAvatarRemove
                   onPress={() => this.toBookView(book)}
@@ -84,6 +89,12 @@ export default class UserEdit extends React.Component {
             })}
           </List>
         </View>
+        <ActionButton
+          buttonColor="rgba(128,203,196,1)"
+          onPress={() => {
+            this.toCreateBookView();
+          }}
+        />
       </ScrollView>
     );
   }

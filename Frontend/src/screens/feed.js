@@ -9,6 +9,7 @@ export default class Feed extends React.Component {
     super(props);
     console.log(props);
     props.getBooksNearby();
+    // setInterval(props.getBooksNearby, 1000);
   }
   toBookView(book) {
     Actions.push("bookview", { book });
