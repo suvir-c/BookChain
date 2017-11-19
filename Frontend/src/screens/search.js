@@ -59,47 +59,49 @@ export default class Search extends React.Component {
           onChangeText={text => this.searchOnChange(text)}
         />
         <View>
-          {search.books && this.state.selectedIndex == 1 && (
-            <List containerStyle={styles.searchList}>
-              {search.books.map((result, i) => {
-                return (
-                  <TouchableOpacity
-                    key={i}
-                    activeOpacity={0.5}
-                    onPress={book => this.toBookView(book)}
-                  >
-                    <BookAvatar
+          {search.books &&
+            this.state.selectedIndex == 1 && (
+              <List containerStyle={styles.searchList}>
+                {search.books.map((result, i) => {
+                  return (
+                    <TouchableOpacity
                       key={i}
-                      avatar={result.picture}
-                      name={result.title}
-                      distance={result.distance}
-                      author={result.author}
-                      rating={result.rating}
-                    />
-                  </TouchableOpacity>
-                );
-              })}
-            </List>
-          )}
-          {search.users && this.state.selectedIndex == 0 && (
-            <List containerStyle={styles.searchList}>
-              {search.users.map((result, i) => {
-                return (
-                  <TouchableOpacity
-                    activeOpacity={0.5}
-                    onPress={user => this.toUserView(user)}
-                  >
-                    <UserAvatar
-                      key={i}
-                      avatar={result.avatar}
-                      name={result.name}
-                      distance={result.distance}
-                    />
-                  </TouchableOpacity>
-                )
-              })}
-            </List>
-          )}
+                      activeOpacity={0.5}
+                      onPress={book => this.toBookView(book)}
+                    >
+                      <BookAvatar
+                        key={i}
+                        avatar={result.picture}
+                        name={result.title}
+                        distance={result.distance}
+                        author={result.author}
+                        rating={result.rating}
+                      />
+                    </TouchableOpacity>
+                  );
+                })}
+              </List>
+            )}
+          {search.users &&
+            this.state.selectedIndex == 0 && (
+              <List containerStyle={styles.searchList}>
+                {search.users.map((result, i) => {
+                  return (
+                    <TouchableOpacity
+                      activeOpacity={0.5}
+                      onPress={user => this.toUserView(user)}
+                    >
+                      <UserAvatar
+                        key={i}
+                        avatar={result.avatar}
+                        name={result.name}
+                        distance={result.distance}
+                      />
+                    </TouchableOpacity>
+                  );
+                })}
+              </List>
+            )}
         </View>
       </View>
     );

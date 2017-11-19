@@ -1,4 +1,4 @@
-import { SET_BOOKS, SET_USERS } from "../constants";
+import { SET_SEARCH_BOOKS, SET_SEARCH_USERS } from "../constants";
 
 const initialState = {
   books: [{}],
@@ -7,11 +7,11 @@ const initialState = {
 
 const searchReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_BOOKS:
+    case SET_SEARCH_BOOKS:
       return Object.assign({}, state, {
         books: action.books
       });
-    case SET_USERS:
+    case SET_SEARCH_USERS:
       return Object.assign({}, state, {
         users: action.users
       });
