@@ -15,3 +15,7 @@ export function deleteBookApi(bookID) {
       return data;
     }))
 }
+
+export function callCreateBookApi(userID, book) {
+  return Promise.resolve();
+}

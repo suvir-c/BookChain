@@ -10,6 +10,8 @@ import thunk from "redux-thunk";
 
 import { composeWithDevTools } from "remote-redux-devtools";
 
+console.disableYellowBox = true;
+
 const ConnectedRouter = connect()(Router);
 const store = createStore(Reducer, composeWithDevTools(applyMiddleware(thunk)));
 export default class App extends React.Component {

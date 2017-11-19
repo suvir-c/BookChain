@@ -6,8 +6,8 @@ import {
 } from "../constants";
 import { callLoginApi, callRegisterApi } from "../api/auth";
 import { Actions } from "react-native-router-flux";
-import { REMOVE_BOOK } from "../constants";
-import { deleteBookApi } from "../api/book";
+import { REMOVE_BOOK, CREATE_BOOK } from "../constants";
+import { deleteBookApi, callCreateBookApi } from "../api/book";
 
 export function login(email, pass) {
   console.log("login action called");
@@ -34,6 +34,19 @@ export function loginSuccess(user) {
 export function loginFailure() {
   return {
     type: LOGIN_FAILURE
+  };
+}
+export function createBook(userID, book) {
+  return dispatch => {
+    return callCreateBookApi(userID, book).then(() => {
+      dispatch(createBookAction(book));
+    });
+  };
+}
+export function createBookAction(book) {
+  return {
+    type: CREATE_BOOK,
+    book
   };
 }
 
