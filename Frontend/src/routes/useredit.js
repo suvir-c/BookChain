@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { deleteBook } from "../actions/auth";
 class UserEditRoute extends React.Component {
   render() {
+    console.log("props updated");
     let { user, deleteBook } = this.props;
     return <UserEdit user={user} deleteBook={deleteBook} />;
   }

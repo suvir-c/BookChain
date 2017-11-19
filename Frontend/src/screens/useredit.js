@@ -26,7 +26,9 @@ export default class UserEdit extends React.Component {
       books: props.user.books
     };
   }
-
+  componentWillReceiveProps() {
+    console.log("props updated");
+  }
   toBookView(book) {
     Actions.push("bookview", { book });
   }
@@ -47,7 +49,7 @@ export default class UserEdit extends React.Component {
             <Avatar
               large
               rounded
-              titile={() => this.getInitials()}
+              title={this.getInitials()}
               activeOpacity={0.7}
             />
             <View style={styles.nameInput}>

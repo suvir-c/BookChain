@@ -30,8 +30,13 @@ const authReducer = (state = inititalState, action) => {
     case REGISTER_FAILURE:
       return Object.assign({}, state, { registerFailure: true });
     case REMOVE_BOOK:
+      let books = [
+        ...state.user.books.slice(0, action.index),
+        ...state.user.books.slice(action.index + 1)
+      ];
       let newState = Object.assign({}, state);
-      newState.user.books.splice(action.index, 1);
+      newState.ts = new Date().getTime(); // Triggers shallow update
+      newState.user.books = books;
       return newState;
     default:
       return state;

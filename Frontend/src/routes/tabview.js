@@ -17,7 +17,8 @@ class TabView extends PureComponent {
       { key: "0", title: "FEED" },
       { key: "1", title: "USER" },
       { key: "2", title: "SEARCH" }
-    ]
+    ],
+    ...this.props
   };
 
   handleIndexChange = index => this.setState({ index });
@@ -52,7 +53,9 @@ const styles = StyleSheet.create({
 //Force ReRenders when redux changes
 const mapStateToProps = state => {
   return {
-    data: state
+    auth: state.auth,
+    books: state.book,
+    search: state.user
   };
 };
 const mapDispatchToProps = dispatch => {
