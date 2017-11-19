@@ -16,24 +16,26 @@ import {
   List
 } from "react-native-elements";
 import { container, labelStyle, inputStyle } from "../mixins";
-import BookAvatar from "../components/bookavatarremove";
+import BookAvatarRemove from "../components/bookavatarremove";
+import { Actions } from "react-native-router-flux";
 export default class UserEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: props.name ? props.name : "Please Enter your name"
+      name: props.user.name ? props.user.name : "Please Enter your name",
+      books: props.user.books
     };
   }
+
+  toBookView(book) {
+    Actions.push("bookview", { book });
+  }
+  getInitials() {
+    return this.state.name.split(" ")[0][0] + this.state.name.split(" ")[0][1];
+  }
+
   navigateToBook() {}
   render() {
-    const book = {
-      name: "Some Book",
-      distance: "1",
-      author: "Jimbo",
-      rating: "2",
-      avatar: "test"
-    };
-    const books = [0, 0, 0, 0, 0].map(() => book);
     return (
       <ScrollView contentContainerStyle={styles.container}>
         <StatusBar backgroundColor="blue" barStyle="light-content" />
@@ -45,10 +47,7 @@ export default class UserEdit extends React.Component {
             <Avatar
               large
               rounded
-              source={{
-                uri:
-                  "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"
-              }}
+              titile={() => this.getInitials()}
               activeOpacity={0.7}
             />
             <View style={styles.nameInput}>
@@ -67,18 +66,18 @@ export default class UserEdit extends React.Component {
             subtitleStyle={styles.subtitle}
             containerStyle={styles.feedList}
           >
-            {books.map((book, i) => {
+            {this.props.user.books.map((book, i) => {
               return (
-                <TouchableOpacity activeOpacity={0.5} key={i}>
-                  <BookAvatar
-                    key={i}
-                    avatar={book.avatar}
-                    name={book.name}
-                    distance={book.distance}
-                    author={book.author}
-                    rating={book.rating}
-                  />
-                </TouchableOpacity>
+                <BookAvatarRemove
+                  onPress={() => this.toBookView(book)}
+                  key={i}
+                  avatar={book.avatar}
+                  name={book.name}
+                  distance={book.distance}
+                  author={book.author}
+                  deleteBook={() => this.props.deleteBook(book.id, i)}
+                  rating={book.rating}
+                />
               );
             })}
           </List>

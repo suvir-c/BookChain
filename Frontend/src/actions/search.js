@@ -3,7 +3,7 @@ import { callBookSearchApi, callUserSearchApi } from "../api/search";
 
 export function searchBooks(bookname) {
   return dispatch => {
-    return callBookSearchApi(boookname).then(data => {
+    return callBookSearchApi(bookname).then(data => {
       dispatch(setSearchBooks(data.books));
     });
   };
