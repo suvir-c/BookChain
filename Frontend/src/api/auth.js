@@ -2,15 +2,35 @@ export function callLoginApi(email, pass) {
   console.log("butwait");
   return Promise.resolve({
     user: {
-      email: email,
-      pass: pass
+      name: "test user",
+      books: [
+        {
+          name: "test",
+          distance: "1",
+          author: "wootwoot",
+          rating: "2",
+          avatar: "test"
+        }
+      ]
     }
   });
 }
 
 export function callRegisterApi(email, pass) {
   return Promise.resolve({
-    email: email,
-    pass: pass
+    user: [
+      {
+        name: "test user",
+        books: [
+          {
+            name: "test",
+            distance: "1",
+            author: "wootwoot",
+            rating: "2",
+            avatar: "test"
+          }
+        ]
+      }
+    ]
   });
 }

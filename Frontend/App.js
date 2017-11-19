@@ -18,7 +18,12 @@ export default class App extends React.Component {
       <Provider store={store}>
         <ConnectedRouter>
           <Stack key="root">
-            <Scene key="login" component={Routes.Login} title="Login" />
+            <Scene
+              key="login"
+              component={Routes.Login}
+              title="Login"
+              initial={true}
+            />
             <Scene
               key="register"
               component={Routes.Register}
@@ -28,7 +33,6 @@ export default class App extends React.Component {
               key="tabview"
               component={Routes.TabView}
               headerMode="none"
-              initial={true}
               hideNavBar
             />
             <Scene key="chat" component={Routes.Chat} />

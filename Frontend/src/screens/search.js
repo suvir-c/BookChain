@@ -27,6 +27,16 @@ export default class Search extends React.Component {
   }
   toUserView(user, books) {
     Actions.push("userview", { user, books });
+  searchBooks(term) {
+    this.props.searchBooks(term);
+  }
+  searchUsers(term) {
+    this.props.searchUsers(term);
+  }
+  searchOnChange(term) {
+    let { selectedIndex } = this.state;
+    if (selectedIndex == 0) this.searchUsers(term);
+    if (selectedIndex == 1) this.searchBooks(term);
   }
   render() {
     const buttons = ["Users", "Books"];
@@ -45,6 +55,7 @@ export default class Search extends React.Component {
           selectedBackgroundColor="white"
           containerStyle={styles.searchContainer}
           inputStyle={styles.searchInput}
+          onChangeText={text => this.searchOnChange(text)}
         />
         <View>
           {this.state.selectedIndex == 1 && (
@@ -52,6 +63,7 @@ export default class Search extends React.Component {
               {search.books.map((result, i) => {
                 return (
                   <TouchableOpacity
+                    key={i}
                     activeOpacity={0.5}
                     onPress={book => this.toBookView(book)}
                   >

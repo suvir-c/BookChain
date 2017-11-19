@@ -6,6 +6,8 @@ import {
 } from "../constants";
 import { callLoginApi, callRegisterApi } from "../api/auth";
 import { Actions } from "react-native-router-flux";
+import { REMOVE_BOOK } from "../constants";
+import { deleteBookApi } from "../api/book";
 
 export function login(email, pass) {
   console.log("login action called");
@@ -47,6 +49,20 @@ export function register(email, pass) {
   };
 }
 
+export function deleteBook(bookID, bookIndex) {
+  return dispatch => {
+    return deleteBookApi(bookID).then(data => {
+      dispatch(deleteBookAction(bookIndex));
+    });
+  };
+}
+
+export function deleteBookAction(bookIndex) {
+  return {
+    type: REMOVE_BOOK,
+    index: bookIndex
+  };
+}
 export function registerSuccess(user) {
   return {
     type: REGISTER_SUCCESS,

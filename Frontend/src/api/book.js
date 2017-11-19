@@ -19,5 +19,5 @@ export function getBooksApi(location) {
   });
 }
 export function deleteBookApi(bookID) {
-  // TODO
+  return new Promise.resolve();
 }

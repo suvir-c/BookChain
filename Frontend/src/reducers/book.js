@@ -10,10 +10,6 @@ const bookReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         books: state.books.concat([action.book])
       });
-    case REMOVE_BOOK:
-      return Object.assign({}, state, {
-        books: books.splice(action.index, 1)
-      });
     case SET_BOOKS:
       return Object.assign({}, state, {
         books: action.books

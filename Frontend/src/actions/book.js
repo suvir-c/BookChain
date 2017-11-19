@@ -23,12 +23,6 @@ export function deleteBook(bookID, bookIndex) {
   };
 }
 
-export function deleteBookAction(bookIndex) {
-  return {
-    type: REMOVE_BOOK,
-    bookID
-  };
-}
 export function setNearbyBooksAction(books) {
   return {
     type: SET_BOOKS,

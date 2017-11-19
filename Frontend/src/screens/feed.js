@@ -20,6 +20,7 @@ export default class Feed extends React.Component {
           {this.props.books.map((book, i) => {
             return (
               <TouchableOpacity
+                key={i}
                 activeOpacity={0.5}
                 onPress={() => this.toBookView(book)}
               >
