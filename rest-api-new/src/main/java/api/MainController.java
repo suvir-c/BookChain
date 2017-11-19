@@ -14,6 +14,7 @@ import api.BookRepository;
 import api.Book_DistanceComp;
 
 import java.util.*;
+import java.lang.Math;
 
 @Controller    // This means that this class is a Controller
 @RequestMapping(path="/demo") // This means URL's start with /demo (after Application path)
@@ -37,6 +38,8 @@ public class MainController {
 		User userToAdd = new User();
 		userToAdd.setUsername(username);
 		userToAdd.setPassword(password);
+		userToAdd.setLongitude(longitude);
+		userToAdd.setLatitude(latitude);
 		userRepository.save(userToAdd);
 		return "Saved new user: " + username + "\n";
 	}
