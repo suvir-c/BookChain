@@ -27,6 +27,7 @@ export default class Search extends React.Component {
   }
   toUserView(user, books) {
     Actions.push("userview", { user, books });
+  }
   searchBooks(term) {
     this.props.searchBooks(term);
   }
@@ -58,7 +59,7 @@ export default class Search extends React.Component {
           onChangeText={text => this.searchOnChange(text)}
         />
         <View>
-          {this.state.selectedIndex == 1 && (
+          {search.books && this.state.selectedIndex == 1 && (
             <List containerStyle={styles.searchList}>
               {search.books.map((result, i) => {
                 return (
@@ -69,8 +70,8 @@ export default class Search extends React.Component {
                   >
                     <BookAvatar
                       key={i}
-                      avatar={result.avatar}
-                      name={result.name}
+                      avatar={result.picture}
+                      name={result.title}
                       distance={result.distance}
                       author={result.author}
                       rating={result.rating}
@@ -80,7 +81,7 @@ export default class Search extends React.Component {
               })}
             </List>
           )}
-          {this.state.selectedIndex == 0 && (
+          {search.users && this.state.selectedIndex == 0 && (
             <List containerStyle={styles.searchList}>
               {search.users.map((result, i) => {
                 return (

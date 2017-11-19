@@ -1,15 +1,18 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Card } from "react-native-elements";
+import { StyleSheet, Text, View, StatusBar, Dimensions, TouchableOpacity } from "react-native";
+import { Card, List } from "react-native-elements";
+import { container } from "../mixins";
+import BookAvatar from "../components/bookavatar.js";
 
 export default class UserView extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
-    props.getBooksNearby();
+  }
+  toBookView(book) {
+    Actions.push("bookview", { book });
   }
   render() {
-    const user = this.props;
+    const { user, books } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar backgroundColor="blue" barStyle="light-content" />
@@ -40,9 +43,27 @@ export default class UserView extends React.Component {
     }
   }
 
+UserView.defaultProps = {
+  books: [
+    {
+      name: "Test Book (Default Props)",
+      author: "Jimbo bob",
+      rating: 4
+    }
+  ],
+  user: {
+    name: "Test User (Default Props)",
+    distance: 2,
+    rating: 4
+  }
+};
+
+const width = Dimensions.get("window").width;
+
 const styles = StyleSheet.create({
     container: {
-      backgroundColor: "#FF6659"
+      ...container,
+      justifyContent: "flex-start"
     },
     bookList: {
       backgroundColor: "#FF6659"
