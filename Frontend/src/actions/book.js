@@ -1,11 +1,14 @@
 import { ADD_BOOK, REMOVE_BOOK, SET_BOOKS } from "../constants";
 
-import { getBooksApi, deleteBookApi } from "../api/book";
+import { getNearbyBooksApi, deleteBookApi } from "../api/book";
 
-export function getBooksNearby(location) {
+export function getNearbyBooks(userID) {
   return dispatch => {
-    return getBooksApi(location).then(data => {
+    return getNearbyBooksApi(userID).then(data => {
       dispatch(setNearbyBooksAction(data.books));
+    })
+    .catch((error) => {
+      console.log(error);
     });
   };
 }
@@ -18,7 +21,7 @@ export function addBookAction(book) {
 export function deleteBook(bookID, bookIndex) {
   return dispatch => {
     return deleteBookApi(bookID).then(data => {
-      dispatch(deleteBookAction(bookIndex));
+      dispatch(deleteBookAction(bookIndex, data));
     });
   };
 }
@@ -28,4 +31,11 @@ export function setNearbyBooksAction(books) {
     type: SET_BOOKS,
     books
   };
+}
+
+export function deleteBookAction(successful) {
+  return {
+    type: REMOVE_BOOK,
+    successful
+  }
 }

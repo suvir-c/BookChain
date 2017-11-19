@@ -198,13 +198,13 @@ public class MainController {
 	//output: none
 	//remove book from database
 	@GetMapping(path="/deleteBook")
-	public @ResponseBody String deleteBook(@RequestParam int bookID) {
+	public @ResponseBody boolean  deleteBook(@RequestParam int bookID) {
 		Book bookToDelete = bookRepository.findByBookID(bookID);
 		if(bookToDelete != null) {
 			bookRepository.delete(bookToDelete);		
-			return "Book: " + bookID + " deleted";
+			return true; 
 		}
-		return "Book: " + bookID + " not found";	
+		return false; 
 	
 	}
 	
