@@ -15,9 +15,9 @@ export function login(email, pass) {
     console.log("login action dispatched");
     return callLoginApi(email, pass)
       .then(data => {
-        if (data.user) {
+        if (data) {
           Actions.push("tabview");
-          return dispatch(loginSuccess(data.user));
+          return dispatch(loginSuccess(data));
         }
         return dispatch(loginFailure());
       })
@@ -50,13 +50,15 @@ export function createBookAction(book) {
   };
 }
 
-export function register(email, pass) {
+export function register(email, pass, longitude, latitude) {
   return dispatch => {
-    return callRegisterApi(email, pass).then(data => {
-      if (data.user) {
-        dispatch(loginSuccess(data.user));
+    return callRegisterApi(email, pass, longitude, latitude).then(data => {
+      if (data) {
+        console.log("made it here");
+        Actions.push("tabview");
+        return dispatch(loginSuccess(data));
       } else {
-        dispatch(loginFailure());
+        return dispatch(loginFailure());
       }
     });
   };

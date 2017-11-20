@@ -30,18 +30,21 @@ public class MainController {
     //Output: If success, new User class in JSON. If fail, empty User class in JSON
     //FAIL CASE: The new User's username already existed in the database
 	@GetMapping(path="/addUser")
-	public @ResponseBody String addNewUser (@RequestParam String username
+	public @ResponseBody User addNewUser (@RequestParam String username
 			, @RequestParam String password, @RequestParam double longitude
 			, @RequestParam double latitude) {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
+		if(userRepository.findByUsername(username) != null) {
+			return null; 
+		}
 		User userToAdd = new User();
 		userToAdd.setUsername(username);
 		userToAdd.setPassword(password);
 		userToAdd.setLongitude(longitude);
 		userToAdd.setLatitude(latitude);
 		userRepository.save(userToAdd);
-		return "Saved new user: " + username + "\n";
+		return userToAdd; 
 	}
 	
 	@GetMapping(path="/addBook") 
