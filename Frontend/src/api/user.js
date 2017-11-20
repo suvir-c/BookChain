@@ -1,19 +1,11 @@
 import config from "../../config";
 export function getUserById(userID) {
-  return new Promise.resolve({
-    user: [
-      {
-        name: "test user",
-        books: [
-          {
-            name: "test",
-            distance: "1",
-            author: "wootwoot",
-            rating: "2",
-            avatar: "test"
-          }
-        ]
-      }
-    ]
-  });
+  let url = config.JAVA_ENDPOINT + "demo/getUserByUserID?userID=" + userID;
+  console.log(url);
+  return fetch(url)
+    .then(data => data.json())
+    .then(data => {
+      console.log(data);
+      return data;
+    });
 }
