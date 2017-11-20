@@ -5,7 +5,7 @@ import { getNearbyBooksApi, deleteBookApi } from "../api/book";
 export function getNearbyBooks(userID) {
   return dispatch => {
     return getNearbyBooksApi(userID).then(data => {
-      dispatch(setNearbyBooksAction(data.books));
+      dispatch(setNearbyBooksAction(data));
     })
     .catch((error) => {
       console.log(error);
