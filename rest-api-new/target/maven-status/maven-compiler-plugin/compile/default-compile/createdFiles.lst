@@ -1,7 +1,0 @@
-api/Application.class
-api/MainController.class
-api/Book.class
-api/UserRepository.class
-api/BookRepository.class
-api/User.class
-api/Book_DistanceComp.class
