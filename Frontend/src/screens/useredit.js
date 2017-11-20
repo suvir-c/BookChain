@@ -80,6 +80,7 @@ export default class UserEdit extends React.Component {
                   key={i}
                   avatar={book.avatar}
                   name={book.name}
+                  cover={book.cover}
                   distance={book.distance}
                   author={book.author}
                   deleteBook={() => this.props.deleteBook(book.id, i)}

@@ -15,7 +15,7 @@ export default class BookAvatarRemove extends React.Component {
         roundAvatar
         rightIcon={{ name: "remove-circle", color: "pink" }}
         onPressRightIcon={() => this.props.deleteBook()}
-        avatar={this.props.avatar}
+        avatar={{ uri: this.props.cover }}
         title={this.props.name}
         subtitle={
           this.props.author +
@@ -37,7 +37,7 @@ BookAvatarRemove.propTypes = {
   author: PropTypes.string.isRequired,
   rating: PropTypes.string.isRequired,
   distance: PropTypes.string.isRequired,
-  avatar: PropTypes.string.isRequired,
+  cover: PropTypes.string.isRequired,
   deleteBook: PropTypes.func.isRequired
 };
 
