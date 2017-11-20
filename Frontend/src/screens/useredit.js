@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     color: "white"
   },
   fullWidth: {
-    width: width * 0.9
+    width: width * 1
   },
   feedList: {
     backgroundColor: "#D32F2F"

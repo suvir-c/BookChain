@@ -3,7 +3,12 @@ import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { Button, FormInput, FormLabel } from "react-native-elements";
 import { Actions } from "react-native-router-flux";
 import { getCoverForBook } from "../api/googlebooks";
-import { Slider } from "react-native-slider";
+import RadioForm, {
+  RadioButton,
+  RadioButtonInput,
+  RadioButtonLabel
+} from "react-native-simple-radio-button";
+
 export default class BookEdit extends React.Component {
   constructor(props) {
     super(props);
@@ -22,7 +27,6 @@ export default class BookEdit extends React.Component {
     };
     this.setState({ book: newBook });
   }
-
   createBook() {
     getCoverForBook(this.state.book.title).then(cover => {
       this.props.createBook({
@@ -32,8 +36,14 @@ export default class BookEdit extends React.Component {
       Actions.pop();
     });
   }
-
   render() {
+    let radio_props = [
+      { label: "1", value: 1 },
+      { label: "2", value: 2 },
+      { label: "3", value: 3 },
+      { label: "4", value: 4 },
+      { label: "5", value: 5 }
+    ];
     return (
       <View style={styles.container}>
         <FormLabel labelStyle={styles.input}>Title</FormLabel>
@@ -47,12 +57,14 @@ export default class BookEdit extends React.Component {
           onChangeText={author => this.updateBook({ author })}
         />
         <View style={styles.center}>
-          <Slider
-            minimumValue={0}
-            maximumValue={5}
-            step={1}
-            value={this.state.book.rating}
-            onValueChange={rating => this.updateBook({ rating })}
+          <RadioForm
+            radio_props={radio_props}
+            initial={1}
+            formHorizontal={true}
+            labelHorizontal={true}
+            onPress={rating => {
+              this.updateBook({ rating });
+            }}
           />
         </View>
         <View>
@@ -68,6 +80,7 @@ export default class BookEdit extends React.Component {
   }
 }
 const width = Dimensions.get("window").width;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -78,9 +91,6 @@ const styles = StyleSheet.create({
   },
   input: {
     color: "white"
-  },
-  slider: {
-    backgroundColor: "white"
   },
   center: {
     justifyContent: "center",
