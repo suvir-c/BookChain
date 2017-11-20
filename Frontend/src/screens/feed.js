@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, ScrollView, TouchableOpacity } from "react-native";
 import { List, ListItem } from "react-native-elements";
 import BookAvatar from "../components/bookavatar.js";
 import { Actions } from "react-native-router-flux";
@@ -16,7 +16,7 @@ export default class Feed extends React.Component {
   }
   render() {
     return (
-      <View style={styles.listWrapper}>
+      <ScrollView style={styles.listWrapper}>
         {this.props.books && (
           <List containerStyle={styles.feedList}>
             {this.props.books.map((book, i) => {
@@ -39,7 +39,7 @@ export default class Feed extends React.Component {
             })}
           </List>
         )}
-      </View>
+      </ScrollView>
     );
   }
 }
