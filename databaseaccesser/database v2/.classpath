@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="bookapp/src"/>
-	<classpathentry kind="lib" path="bookapp/mysql-connector-java-5.1.40-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Wei Wen/eclipse-workspace/DatabaseV2.zip_expanded/bookapp/gson-2.8.0.jar"/>
-	<classpathentry kind="output" path="bookapp/bin"/>
-</classpath>
