@@ -8,7 +8,7 @@ export default class Feed extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
-    props.getBooksNearby();
+    props.getNearbyBooks(5);
     // setInterval(props.getBooksNearby, 1000);
   }
   toBookView(book) {
@@ -17,26 +17,28 @@ export default class Feed extends React.Component {
   render() {
     return (
       <View style={styles.listWrapper}>
-        <List containerStyle={styles.feedList}>
-          {this.props.books.map((book, i) => {
-            return (
-              <TouchableOpacity
-                key={i}
-                activeOpacity={0.5}
-                onPress={() => this.toBookView(book)}
-              >
-                <BookAvatar
+        {this.props.books && (
+          <List containerStyle={styles.feedList}>
+            {this.props.books.map((book, i) => {
+              return (
+                <TouchableOpacity
                   key={i}
-                  avatar={book.avatar}
-                  name={book.name}
-                  distance={book.distance}
-                  author={book.author}
-                  rating={book.rating}
-                />
-              </TouchableOpacity>
-            );
-          })}
-        </List>
+                  activeOpacity={0.5}
+                  onPress={() => this.toBookView(book)}
+                >
+                  <BookAvatar
+                    key={i}
+                    avatar={book.picture}
+                    name={book.title}
+                    distance={book.distance}
+                    author={book.author}
+                    rating={book.rating}
+                  />
+                </TouchableOpacity>
+              );
+            })}
+          </List>
+        )}
       </View>
     );
   }

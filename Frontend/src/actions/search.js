@@ -6,7 +6,10 @@ export function searchBooks(bookname) {
     return callBookSearchApi(bookname, 5)
       .then(data => {
         return dispatch(setSearchBooks(data));
-    })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 }
 
@@ -23,6 +26,9 @@ export function searchUsers(username) {
       .then(data => {
         return dispatch(setSearchUsers(data));
     })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 }
 
