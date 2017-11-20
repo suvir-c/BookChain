@@ -17,11 +17,14 @@ export default class Signup extends React.Component {
     super(props);
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      firstName: "",
+      lastName: ""
     };
   }
   register() {
-    this.props.register(this.state.email, this.state.password);
+    let name = this.state.firstName + " " + this.state.lastName;
+    this.props.register(this.state.email, this.state.password, name);
   }
   toLogin() {
     Actions.push("login");
@@ -49,6 +52,26 @@ export default class Signup extends React.Component {
           </View>
           <View style={styles.loginInputWrapper}>
             <View style={styles.loginPreviewWrapper}>
+              <Text style={styles.loginPreview}>First Name</Text>
+            </View>
+            <TextInput
+              autoCorrect={false}
+              style={styles.loginInput}
+              onChangeText={firstName => this.setState({ firstName })}
+            />
+          </View>
+          <View style={styles.loginInputWrapper}>
+            <View style={styles.loginPreviewWrapper}>
+              <Text style={styles.loginPreview}>Last Name</Text>
+            </View>
+            <TextInput
+              autoCorrect={false}
+              style={styles.loginInput}
+              onChangeText={lastName => this.setState({ lastName })}
+            />
+          </View>
+          <View style={styles.loginInputWrapper}>
+            <View style={styles.loginPreviewWrapper}>
               <Text style={styles.loginPreview}>Password</Text>
             </View>
             <TextInput
@@ -57,17 +80,6 @@ export default class Signup extends React.Component {
               secureTextEntry={true}
               style={styles.loginInput}
               onChangeText={password => this.setState({ password })}
-            />
-          </View>
-          <View style={styles.loginInputWrapper}>
-            <View style={styles.loginPreviewWrapper}>
-              <Text style={styles.loginPreview}>Confirm Password</Text>
-            </View>
-            <TextInput
-              autoCorrect={false}
-              autoCapitalize="none"
-              secureTextEntry={true}
-              style={styles.loginInput}
             />
           </View>
         </View>
