@@ -87,17 +87,17 @@ export default class Search extends React.Component {
           {search.users &&
             this.state.selectedIndex == 0 && (
               <List containerStyle={styles.searchList}>
-                {search.users.map((result, i) => {
+                {search.users.map((user, i) => {
                   return (
                     <TouchableOpacity
                       activeOpacity={0.5}
-                      onPress={user => this.toUserView(user)}
+                      onPress={() => this.toUserView(user)}
                     >
                       <UserAvatar
                         key={i}
-                        avatar={result.avatar}
-                        name={result.name}
-                        distance={result.distance}
+                        avatar={user.avatar}
+                        name={user.name}
+                        distance={user.distance}
                       />
                     </TouchableOpacity>
                   );

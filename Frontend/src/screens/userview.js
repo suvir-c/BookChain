@@ -5,33 +5,52 @@ import {
   View,
   StatusBar,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from "react-native";
-import { Card, List } from "react-native-elements";
+import { Card, List, Avatar } from "react-native-elements";
 import { container } from "../mixins";
 import BookAvatar from "../components/bookavatar.js";
 import { Actions } from "react-native-router-flux";
+import { getUserById } from "../api/user";
 
 export default class UserView extends React.Component {
   constructor(props) {
     super(props);
   }
   toBookView(book) {
-    Actions.push("bookview", { book });
+    getUserById(book.ownerID).then(user => {
+      Actions.push("bookview", { book, user });
+    });
+  }
+  getInitials(name) {
+    return (name.split(" ")[0][0] + name.split(" ")[1][0]).toUpperCase();
   }
   render() {
     const { user, books } = this.props;
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <StatusBar backgroundColor="blue" barStyle="light-content" />
-        <Card title="user" containerStyle={styles.card}>
-          <Text>{user.name}</Text>
-          <Text>{user.distance} miles away</Text>
+        <Card containerStyle={styles.card} onPress={() => this.toUserView()}>
+          <View style={styles.bookcard}>
+            <View style={styles.leftcard}>
+              <Text style={styles.title}>{user.name}</Text>
+            </View>
+            <View style={styles.imageContainer}>
+              <Avatar
+                xlarge
+                rounded
+                title={this.getInitials(user.name)}
+                activeOpacity={0.7}
+              />
+            </View>
+          </View>
         </Card>
         <List containerStyle={styles.bookList}>
           {this.props.books.map((book, i) => {
             return (
               <TouchableOpacity
+                key={i}
                 activityOpacity={0.5}
                 onPress={() => this.toBookView(book)}
               >
@@ -47,37 +66,33 @@ export default class UserView extends React.Component {
             );
           })}
         </List>
-      </View>
+      </ScrollView>
     );
   }
 }
 
-UserView.defaultProps = {
-  books: [
-    {
-      name: "Test Book (Default Props)",
-      author: "Jimbo bob",
-      rating: 4
-    }
-  ],
-  user: {
-    name: "Test User (Default Props)",
-    distance: 2,
-    rating: 4
-  }
-};
-
 const width = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
-  container: {
-    ...container,
-    justifyContent: "flex-start"
-  },
   bookList: {
     backgroundColor: "#FF6659"
   },
   card: {
-    width: width * 0.95
+    width: width * 0.95,
+    height: 200
+  },
+  leftcard: {
+    flex: 2
+  },
+  bookcard: {
+    height: 200,
+    width: width * 0.85,
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  title: {
+    color: "black",
+    fontSize: 36,
+    fontWeight: "700"
   }
 });

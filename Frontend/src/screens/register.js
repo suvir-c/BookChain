@@ -8,10 +8,16 @@ import {
   Image,
   Dimensions,
   TextInput,
-  Button,
   TouchableOpacity
 } from "react-native";
 import { Actions } from "react-native-router-flux";
+import {
+  Button,
+  FormLabel,
+  FormInput,
+  FormValidationMessage
+} from "react-native-elements";
+
 export default class Signup extends React.Component {
   constructor(props) {
     super(props);
@@ -38,56 +44,41 @@ export default class Signup extends React.Component {
             Decentralized, peer-to-peer book sharing
           </Text>
         </View>
-        <View style={styles.loginWrapper}>
-          <View style={styles.loginInputWrapper}>
-            <View style={styles.loginPreviewWrapper}>
-              <Text style={styles.loginPreview}>Email</Text>
-            </View>
-            <TextInput
-              autoCorrect={false}
-              autoCapitalize="none"
-              style={styles.loginInput}
-              onChangeText={email => this.setState({ email })}
-            />
-          </View>
-          <View style={styles.loginInputWrapper}>
-            <View style={styles.loginPreviewWrapper}>
-              <Text style={styles.loginPreview}>First Name</Text>
-            </View>
-            <TextInput
-              autoCorrect={false}
-              style={styles.loginInput}
-              onChangeText={firstName => this.setState({ firstName })}
-            />
-          </View>
-          <View style={styles.loginInputWrapper}>
-            <View style={styles.loginPreviewWrapper}>
-              <Text style={styles.loginPreview}>Last Name</Text>
-            </View>
-            <TextInput
-              autoCorrect={false}
-              style={styles.loginInput}
-              onChangeText={lastName => this.setState({ lastName })}
-            />
-          </View>
-          <View style={styles.loginInputWrapper}>
-            <View style={styles.loginPreviewWrapper}>
-              <Text style={styles.loginPreview}>Password</Text>
-            </View>
-            <TextInput
-              autoCorrect={false}
-              autoCapitalize="none"
-              secureTextEntry={true}
-              style={styles.loginInput}
-              onChangeText={password => this.setState({ password })}
-            />
-          </View>
+        <FormLabel labelStyle={styles.input}>Email</FormLabel>
+        <FormInput
+          inputStyle={styles.input}
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={email => this.setState({ email })}
+        />
+        <FormLabel labelStyle={styles.input}>First Name</FormLabel>
+        <FormInput
+          inputStyle={styles.input}
+          autoCapitalize="none"
+          autoCorrect={false}
+          secureTextEntry={true}
+          onChangeText={password => this.setState({ password })}
+        />
+        <FormLabel labelStyle={styles.input}>First Name</FormLabel>
+        <FormInput
+          inputStyle={styles.input}
+          autoCorrect={false}
+          onChangeText={firstName => this.setState({ firstName })}
+        />
+        <FormLabel labelStyle={styles.input}>Last Name</FormLabel>
+        <FormInput
+          inputStyle={styles.input}
+          autoCorrect={false}
+          onChangeText={firstName => this.setState({ firstName })}
+        />
+        <View style={styles.buttonContainer}>
+          <Button
+            raised
+            buttonStyle={styles.button}
+            onPress={() => this.register()}
+            title="SIGN UP"
+          />
         </View>
-        <TouchableOpacity activeOpacity={0.5} onPress={() => this.register()}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>SIGNUP</Text>
-          </View>
-        </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.5} onPress={this.toLogin}>
           <View style={styles.createAccountWrapper}>
             <Text style={styles.createAccountButton}>
@@ -113,9 +104,17 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: "white"
   },
+  buttonContainer: {
+    marginTop: 25
+  },
   subtitleText: {
     fontSize: 12,
     color: "white"
+  },
+  button: {
+    backgroundColor: "#03A9F4",
+    alignItems: "center",
+    justifyContent: "center"
   },
   loginWrapper: {
     paddingVertical: 50
@@ -139,13 +138,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 10,
     color: "white"
-  },
-  button: {
-    backgroundColor: "#3F9488",
-    paddingVertical: 15,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30
   },
   buttonText: {
     color: "white",

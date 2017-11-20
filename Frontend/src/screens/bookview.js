@@ -1,26 +1,63 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  StatusBar,
+  Dimensions,
+  Image
+} from "react-native";
 import { container } from "../mixins";
 
-import { Card } from "react-native-elements";
+import { Card, Avatar } from "react-native-elements";
+import { Actions } from "react-native-router-flux";
 
 export default class BookView extends React.Component {
   constructor(props) {
     super(props);
   }
+  getInitials(name) {
+    return (name.split(" ")[0][0] + name.split(" ")[1][0]).toUpperCase();
+  }
+  toUserView() {
+    let { user } = this.props;
+    Actions.push("userview", { user, books: user.books });
+  }
   render() {
     const { book, user } = this.props;
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor="blue" barStyle="light-content" />
-        <Card title="book" containerStyle={styles.card}>
-          <Text>{book.name}</Text>
-          <Text> By {book.author}</Text>
+        <Card containerStyle={styles.card}>
+          <View style={styles.bookcard}>
+            <View style={styles.leftcard}>
+              <Text style={styles.title}>{book.title}</Text>
+              <Text>By {book.author}</Text>
+            </View>
+            <View style={styles.imageContainer}>
+              <Image
+                resizeMode="contain"
+                style={styles.image}
+                source={{ uri: book.cover }}
+              />
+            </View>
+          </View>
         </Card>
-        <Card title="user" containerStyle={styles.card}>
-          <Text>{user.name}</Text>
-          <Text>{user.distance} Miles Away</Text>
-          <Text> Rated the book {book.rating} stars </Text>
+        <Card containerStyle={styles.card} onPress={() => this.toUserView()}>
+          <View style={styles.bookcard}>
+            <View style={styles.leftcard}>
+              <Text style={styles.title}>{user.name}</Text>
+              <Text>Gave the book {book.rating} stars.</Text>
+            </View>
+            <View style={styles.imageContainer}>
+              <Avatar
+                xlarge
+                rounded
+                title={this.getInitials(user.name)}
+                onPress={() => this.toUserView()}
+                activeOpacity={0.7}
+              />
+            </View>
+          </View>
         </Card>
       </View>
     );
@@ -47,6 +84,31 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start"
   },
   card: {
-    width: width * 0.95
+    width: width * 0.95,
+    height: 200
+  },
+  leftcard: {
+    flex: 2
+  },
+  image: {
+    width: 100,
+    height: 150
+  },
+  imageContainer: {
+    flex: 1,
+    height: 165,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  bookcard: {
+    height: 200,
+    width: width * 0.85,
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  title: {
+    color: "black",
+    fontSize: 36,
+    fontWeight: "700"
   }
 });

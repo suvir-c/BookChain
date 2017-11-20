@@ -9,6 +9,7 @@ import {
 import { List, ListItem } from "react-native-elements";
 import BookAvatar from "../components/bookavatar.js";
 import { Actions } from "react-native-router-flux";
+import { getUserById } from "../api/user";
 
 export default class Feed extends React.Component {
   constructor(props) {
@@ -21,7 +22,9 @@ export default class Feed extends React.Component {
     // setInterval(props.getNearbyBooks.bind(this, 5), 10000);
   }
   toBookView(book) {
-    Actions.push("bookview", { book });
+    getUserById(book.ownerID).then(user => {
+      Actions.push("bookview", { book, user });
+    });
   }
   _onRefresh() {
     this.setState({ refreshing: true });
@@ -53,6 +56,7 @@ export default class Feed extends React.Component {
                     key={i}
                     avatar={book.picture}
                     name={book.title}
+                    cover={book.cover}
                     distance={book.distance}
                     author={book.author}
                     rating={book.rating}

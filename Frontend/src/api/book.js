@@ -47,7 +47,7 @@ export function callCreateBookApi(
       rating +
       "&title=" +
       title +
-      "&picture=" +
+      "&cover=" +
       cover +
       "&longitude=" +
       0 +

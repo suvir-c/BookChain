@@ -26,6 +26,7 @@
     "react-native-action-button": "^2.8.2",
     "react-native-elements": "^0.18.2",
     "react-native-router-flux": "^4.0.0-beta.23",
+    "react-native-slider": "^0.11.0",
     "react-redux": "^5.0.6",
     "redux-thunk": "^2.2.0",
     "remote-redux-devtools": "^0.5.12"

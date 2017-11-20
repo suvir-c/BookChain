@@ -10,7 +10,12 @@ import {
   TextInput,
   TouchableOpacity
 } from "react-native";
-import { Button } from "react-native-elements";
+import {
+  Button,
+  FormLabel,
+  FormInput,
+  FormValidationMessage
+} from "react-native-elements";
 import { Actions } from "react-native-router-flux";
 
 export default class Login extends React.Component {
@@ -39,43 +44,40 @@ export default class Login extends React.Component {
             Decentralized, peer-to-peer book sharing
           </Text>
         </View>
-        <View style={styles.loginWrapper}>
-          <View style={styles.loginInputWrapper}>
-            <View style={styles.loginPreviewWrapper}>
-              <Text style={styles.loginPreview}>Email</Text>
-            </View>
-            <TextInput
-              autoCorrect={false}
-              autoCapitalize="none"
-              style={styles.loginInput}
-              onChangeText={email => this.setState({ email })}
-            />
-          </View>
-          <View style={styles.loginInputWrapper}>
-            <View style={styles.loginPreviewWrapper}>
-              <Text style={styles.loginPreview}>Password</Text>
-            </View>
-            <TextInput
-              autoCapitalize="none"
-              autoCorrect={false}
-              secureTextEntry={true}
-              style={styles.loginInput}
-              onChangeText={password => this.setState({ password })}
-            />
-          </View>
+        <FormLabel labelStyle={styles.input}>Email</FormLabel>
+        <FormInput
+          inputStyle={styles.input}
+          autoCapitalize="none"
+          autoCorrect={false}
+          onChangeText={email => this.setState({ email })}
+        />
+        <FormLabel labelStyle={styles.input}>Password</FormLabel>
+        <FormInput
+          inputStyle={styles.input}
+          autoCapitalize="none"
+          autoCorrect={false}
+          secureTextEntry={true}
+          onChangeText={password => this.setState({ password })}
+        />
+        {this.props.auth.loginFailure && (
+          <FormValidationMessage>Please Try Again</FormValidationMessage>
+        )}
+        <View style={styles.buttonContainer}>
+          <Button
+            raised
+            buttonStyle={styles.button}
+            onPress={() => this.login()}
+            title="LOGIN"
+          />
         </View>
-        <Button
-          buttonStyle={styles.button}
-          raised
-          onPress={() => this.login()}
-          title="LOGIN"
-        />
-        <Button
-          buttonStyle={styles.button}
-          raised
-          onPress={this.toGuest}
-          title="GUEST"
-        />
+        <View style={styles.buttonContainer}>
+          <Button
+            raised
+            buttonStyle={styles.button}
+            onPress={this.toGuest}
+            title="GUEST"
+          />
+        </View>
         <TouchableOpacity activeOpacity={0.5} onPress={this.toRegister}>
           <View style={styles.createAccountWrapper}>
             <Text style={styles.createAccountButton}>
@@ -91,7 +93,11 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FF6659"
+    backgroundColor: "#FF6659",
+    paddingHorizontal: 10
+  },
+  buttonContainer: {
+    marginTop: 25
   },
   titleWrapper: {
     paddingVertical: 50,
@@ -130,7 +136,6 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#03A9F4",
-    marginVertical: 30,
     alignItems: "center",
     justifyContent: "center"
   },
@@ -144,6 +149,9 @@ const styles = StyleSheet.create({
   },
   createAccountButton: {
     fontSize: 15,
+    color: "white"
+  },
+  input: {
     color: "white"
   }
 });

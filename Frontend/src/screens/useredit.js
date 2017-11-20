@@ -34,7 +34,8 @@ export default class UserEdit extends React.Component {
     Actions.push("bookview", { book });
   }
   getInitials() {
-    return this.state.name.split(" ")[0][0] + this.state.name.split(" ")[1][0];
+    return (this.state.name.split(" ")[0][0] + this.state.name.split(" ")[1][0]
+    ).toUpperCase();
   }
   toCreateBookView() {
     let createBook = this.props.createBook.bind(this, this.props.user.userID);
@@ -75,7 +76,7 @@ export default class UserEdit extends React.Component {
                     cover={book.cover}
                     distance={book.distance}
                     author={book.author}
-                    deleteBook={() => this.props.deleteBook(book.id, i)}
+                    deleteBook={() => this.props.deleteBook(book.bookID, i)}
                     rating={book.rating}
                   />
                 );
