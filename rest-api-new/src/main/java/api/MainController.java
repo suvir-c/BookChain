@@ -31,7 +31,9 @@ public class MainController {
     //FAIL CASE: The new User's username already existed in the database
 	@GetMapping(path="/addUser")
 	public @ResponseBody User addNewUser (@RequestParam String username
-			, @RequestParam String password, @RequestParam double longitude
+			, @RequestParam String name
+			, @RequestParam String password
+			, @RequestParam double longitude
 			, @RequestParam double latitude) {
 		// @ResponseBody means the returned String is the response, not a view name
 		// @RequestParam means it is a parameter from the GET or POST request
@@ -43,6 +45,7 @@ public class MainController {
 		userToAdd.setPassword(password);
 		userToAdd.setLongitude(longitude);
 		userToAdd.setLatitude(latitude);
+		userToAdd.setName(name);
 		userRepository.save(userToAdd);
 		return userToAdd; 
 	}
@@ -81,6 +84,10 @@ public class MainController {
 		return userRepository.findByUsernameAndPassword(username, password);
 	}
 	
+	@GetMapping(path="/getUserByUserID")
+	public @ResponseBody User getUser(@RequestParam int userID) {
+		return userRepository.findByUserID(userID);
+	}
 	//Invoke upon "Login", return a jsonfied user class if success		
 		//Input: username, password
 		//Output: If Success, return the whole User class in JSON. If fail, return empty User class in JSON
@@ -153,6 +160,10 @@ public class MainController {
 		return bookRepository.findByOwnerID(ownerID);
 	}
 	
+	@GetMapping(path="/getBook")
+	public @ResponseBody Book getBook(@RequestParam int bookID) {
+		return bookRepository.findByBookID(bookID);
+	}
 	
 	//Invoke upon "Search Books", return a jsonfied booklist for front end.
 	//Input: the bookName typed by the user.
