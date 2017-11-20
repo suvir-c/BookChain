@@ -45,9 +45,6 @@ export default class UserEdit extends React.Component {
       <ScrollView contentContainerStyle={styles.container}>
         <StatusBar backgroundColor="blue" barStyle="light-content" />
         <View>
-          <View style={styles.header}>
-            <Text h4> Edit Profile </Text>
-          </View>
           <View style={styles.editContainer}>
             <Avatar
               large
@@ -55,6 +52,10 @@ export default class UserEdit extends React.Component {
               title={this.getInitials()}
               activeOpacity={0.7}
             />
+            <Text style={styles.subheader}>
+              Hello, {"\n"}
+              {this.props.user.name}
+            </Text>
           </View>
         </View>
         <View style={styles.fullWidth}>
@@ -126,7 +127,8 @@ const styles = StyleSheet.create({
   },
   subheader: {
     color: "white",
-    fontSize: 22
+    fontSize: 30,
+    left: 10
   },
   subtitle: {
     color: "white"
