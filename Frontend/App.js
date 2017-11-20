@@ -24,24 +24,30 @@ export default class App extends React.Component {
               key="login"
               component={Routes.Login}
               title="Login"
+              hideNavBar
               initial={true}
             />
             <Scene
               key="register"
               component={Routes.Register}
               title="Register"
+              hideNavBar
             />
             <Scene
               key="tabview"
               component={Routes.TabView}
               headerMode="none"
-              // hideNavBar
+              hideNavBar
             />
             <Scene key="chat" component={Routes.Chat} />
             <Scene key="userview" component={Routes.UserView} />
             <Scene key="bookview" component={Routes.BookView} />
             <Scene key="bookedit" component={Routes.BookEdit} />
-            <Scene key="guest" component={Routes.Guest} />
+            <Scene
+              key="guest"
+              title={"Nearby Books"}
+              component={Routes.Guest}
+            />
           </Stack>
         </ConnectedRouter>
       </Provider>
