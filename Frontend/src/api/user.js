@@ -1,3 +1,4 @@
+import config from "../../config";
 export function getUserById(userID) {
   return new Promise.resolve({
     user: [

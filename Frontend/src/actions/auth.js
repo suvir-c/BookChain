@@ -50,9 +50,15 @@ export function createBookAction(book) {
   };
 }
 
-export function register(email, pass, longitude, latitude) {
+export function register(email, pass, name, longitude, latitude) {
   return dispatch => {
-    return callRegisterApi(email, pass, longitude, latitude).then(data => {
+    return callRegisterApi(
+      email,
+      pass,
+      name,
+      longitude,
+      latitude
+    ).then(data => {
       if (data) {
         console.log("made it here");
         Actions.push("tabview");

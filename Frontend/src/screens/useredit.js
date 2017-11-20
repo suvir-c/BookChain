@@ -40,8 +40,6 @@ export default class UserEdit extends React.Component {
     let createBook = this.props.createBook.bind(this, this.props.user.id);
     Actions.push("bookedit", { createBook });
   }
-
-  navigateToBook() {}
   render() {
     return (
       <ScrollView contentContainerStyle={styles.container}>
@@ -57,14 +55,6 @@ export default class UserEdit extends React.Component {
               title={this.getInitials()}
               activeOpacity={0.7}
             />
-            <View style={styles.nameInput}>
-              <FormLabel labelStyle={styles.labelStyle}>Name</FormLabel>
-              <FormInput
-                inputStyle={styles.inputStyle}
-                placeholder={this.state.name}
-                autoFocus={false}
-              />
-            </View>
           </View>
         </View>
         <View style={styles.fullWidth}>
@@ -73,21 +63,22 @@ export default class UserEdit extends React.Component {
             subtitleStyle={styles.subtitle}
             containerStyle={styles.feedList}
           >
-            {this.props.books.map((book, i) => {
-              return (
-                <BookAvatarRemove
-                  onPress={() => this.toBookView(book)}
-                  key={i}
-                  avatar={book.avatar}
-                  name={book.name}
-                  cover={book.cover}
-                  distance={book.distance}
-                  author={book.author}
-                  deleteBook={() => this.props.deleteBook(book.id, i)}
-                  rating={book.rating}
-                />
-              );
-            })}
+            {this.props.books &&
+              this.props.books.map((book, i) => {
+                return (
+                  <BookAvatarRemove
+                    onPress={() => this.toBookView(book)}
+                    key={i}
+                    avatar={book.avatar}
+                    name={book.name}
+                    cover={book.cover}
+                    distance={book.distance}
+                    author={book.author}
+                    deleteBook={() => this.props.deleteBook(book.id, i)}
+                    rating={book.rating}
+                  />
+                );
+              })}
           </List>
         </View>
         <ActionButton

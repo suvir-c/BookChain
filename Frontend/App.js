@@ -24,6 +24,7 @@ export default class App extends React.Component {
               key="login"
               component={Routes.Login}
               title="Login"
+              initial={true}
             />
             <Scene
               key="register"
@@ -35,7 +36,6 @@ export default class App extends React.Component {
               component={Routes.TabView}
               headerMode="none"
               // hideNavBar
-              initial={true}
             />
             <Scene key="chat" component={Routes.Chat} />
             <Scene key="userview" component={Routes.UserView} />

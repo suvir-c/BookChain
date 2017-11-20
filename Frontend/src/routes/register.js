@@ -16,7 +16,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    register: (email, pass) => dispatch(register(email, pass))
+    register: (email, pass, name) => dispatch(register(email, pass, name))
   };
 };
 
