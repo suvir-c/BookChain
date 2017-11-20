@@ -84,7 +84,7 @@ export default class UserEdit extends React.Component {
           </List>
         </View>
         <ActionButton
-          buttonColor="rgba(128,203,196,1)"
+          buttonColor="#03A9F4"
           onPress={() => {
             this.toCreateBookView();
           }}
@@ -138,6 +138,6 @@ const styles = StyleSheet.create({
     width: width * 1
   },
   feedList: {
-    backgroundColor: "#D32F2F"
+    backgroundColor: "#FF6659"
   }
 });

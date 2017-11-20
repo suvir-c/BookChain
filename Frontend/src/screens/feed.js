@@ -55,7 +55,7 @@ export default class Feed extends React.Component {
                   <BookAvatar
                     key={i}
                     avatar={book.picture}
-                    name={book.title}
+                    title={book.title}
                     cover={book.cover}
                     distance={book.distance}
                     author={book.author}

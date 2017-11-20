@@ -30,11 +30,11 @@ export default class UserView extends React.Component {
     const { user, books } = this.props;
     return (
       <ScrollView style={styles.container}>
-        <StatusBar backgroundColor="blue" barStyle="light-content" />
         <Card containerStyle={styles.card} onPress={() => this.toUserView()}>
           <View style={styles.bookcard}>
             <View style={styles.leftcard}>
               <Text style={styles.title}>{user.name}</Text>
+              <Text> {user.username}</Text>
             </View>
             <View style={styles.imageContainer}>
               <Avatar
@@ -74,11 +74,14 @@ export default class UserView extends React.Component {
 const width = Dimensions.get("window").width;
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#FF6659"
+  },
   bookList: {
     backgroundColor: "#FF6659"
   },
   card: {
-    width: width * 0.95,
+    width: width * 0.93,
     height: 200
   },
   leftcard: {

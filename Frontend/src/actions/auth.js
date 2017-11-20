@@ -39,7 +39,7 @@ export function loginFailure() {
 export function createBook(userID, book) {
   let author = book.author,
     rating = book.rating,
-    title = book.name,
+    title = book.title,
     cover = book.cover;
   return dispatch => {
     return callCreateBookApi(userID, author, rating, title, cover).then(() => {

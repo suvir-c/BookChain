@@ -150,5 +150,8 @@ const styles = StyleSheet.create({
   createAccountButton: {
     fontSize: 15,
     color: "white"
+  },
+  input: {
+    color: "white"
   }
 });

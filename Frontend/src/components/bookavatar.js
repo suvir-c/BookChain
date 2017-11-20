@@ -16,7 +16,7 @@ export default class BookAvatar extends React.Component {
           style={styles.listItem}
           roundAvatar
           avatar={{ uri: this.props.cover }}
-          title={this.props.name}
+          title={this.props.title}
           subtitle={
             this.props.author +
             " | " +

@@ -97,6 +97,7 @@ export default class Search extends React.Component {
                         key={i}
                         avatar={user.avatar}
                         name={user.name}
+                        email={user.username}
                         distance={user.distance}
                       />
                     </TouchableOpacity>

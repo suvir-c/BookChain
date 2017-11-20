@@ -47,6 +47,7 @@ export default class BookView extends React.Component {
             <View style={styles.leftcard}>
               <Text style={styles.title}>{user.name}</Text>
               <Text>Gave the book {book.rating} stars.</Text>
+              <Text>Reach them at: {user.username}</Text>
             </View>
             <View style={styles.imageContainer}>
               <Avatar

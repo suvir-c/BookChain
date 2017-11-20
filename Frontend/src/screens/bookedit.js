@@ -56,12 +56,15 @@ export default class BookEdit extends React.Component {
           inputStyle={styles.input}
           onChangeText={author => this.updateBook({ author })}
         />
+        <FormLabel labelStyle={styles.input}>Rating</FormLabel>
         <View style={styles.center}>
           <RadioForm
             radio_props={radio_props}
             initial={1}
             formHorizontal={true}
             labelHorizontal={true}
+            labelColor="white"
+            buttonColor={"white"}
             onPress={rating => {
               this.updateBook({ rating });
             }}
@@ -93,8 +96,9 @@ const styles = StyleSheet.create({
     color: "white"
   },
   center: {
+    marginVertical: 10,
+    flexDirection: "row",
     justifyContent: "center",
-    alignItems: "stretch",
-    width: width * 0.9
+    alignItems: "center"
   }
 });
