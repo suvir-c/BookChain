@@ -37,8 +37,18 @@ export function loginFailure() {
   };
 }
 export function createBook(userID, book) {
+  let author = book.author,
+    rating = book.rating,
+    title = book.name,
+    picture = book.cover;
   return dispatch => {
-    return callCreateBookApi(userID, book).then(() => {
+    return callCreateBookApi(
+      userID,
+      author,
+      rating,
+      title,
+      picture
+    ).then(() => {
       dispatch(createBookAction(book));
     });
   };

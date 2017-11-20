@@ -21,18 +21,40 @@ export function deleteBookApi(bookID) {
 
 export function getBookByBookID(bookID) {
   return fetch(config.JAVA_ENDPOINT + "/demo/getBook?bookID=" + bookID)
-  .then(data => data.json())
-  .then(data => {
-    console.log(data);
-    return data;
-  });
+    .then(data => data.json())
+    .then(data => {
+      console.log(data);
+      return data;
+    });
 }
 
-export function callCreateBookApi(userID, author, rating, title, picture, longitude, latitude) {
-  return fetch(config.JAVA_ENDPOINT + "/demo/addBook?ownerID=" + userID + "author=" + author
-    + "rating=" + rating + "title=" + title + "picture=" + picture + "longitude=" + 0
-    + "latitude=" + 0)  //HARDCODED long + lat
-    .then(data => data.json())
+export function callCreateBookApi(
+  userID,
+  author,
+  rating,
+  title,
+  picture,
+  longitude,
+  latitude
+) {
+  return fetch(
+    config.JAVA_ENDPOINT +
+      "/demo/addBook?ownerID=" +
+      userID +
+      "author=" +
+      author +
+      "rating=" +
+      rating +
+      "title=" +
+      title +
+      "picture=" +
+      picture +
+      "longitude=" +
+      0 +
+      "latitude=" +
+      0
+  ) //HARDCODED long + lat
+    .then(data => data.text())
     .then(data => {
       console.log(data);
       return data;
