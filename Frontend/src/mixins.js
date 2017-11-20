@@ -1,6 +1,6 @@
 export const container = {
   flex: 1,
-  backgroundColor: "#D32F2F",
+  backgroundColor: "#FF6659",
   alignItems: "center",
   justifyContent: "center"
 };

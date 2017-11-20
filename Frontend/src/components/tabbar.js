@@ -1,6 +1,6 @@
 import React from "react";
 import { TabBar } from "react-native-tab-view";
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar, View } from "react-native";
 
 export default class MainTabBar extends React.Component {
   constructor(props) {
@@ -8,11 +8,14 @@ export default class MainTabBar extends React.Component {
   }
   render() {
     return (
-      <TabBar
-        {...this.props}
-        style={styles.TabBar}
-        indicatorStyle={styles.Indicator}
-      />
+      <View>
+        <StatusBar />
+        <TabBar
+          {...this.props}
+          style={styles.TabBar}
+          indicatorStyle={styles.Indicator}
+        />
+      </View>
     );
   }
 }

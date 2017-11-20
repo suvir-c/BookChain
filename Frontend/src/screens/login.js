@@ -8,9 +8,9 @@ import {
   Image,
   Dimensions,
   TextInput,
-  Button,
   TouchableOpacity
 } from "react-native";
+import { Button } from "react-native-elements";
 import { Actions } from "react-native-router-flux";
 
 export default class Login extends React.Component {
@@ -64,16 +64,18 @@ export default class Login extends React.Component {
             />
           </View>
         </View>
-        <TouchableOpacity activeOpacity={0.5} onPress={() => this.login()}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>LOGIN</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.5} onPress={this.toGuest}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>GUEST</Text>
-          </View>
-        </TouchableOpacity>
+        <Button
+          buttonStyle={styles.button}
+          raised
+          onPress={() => this.login()}
+          title="LOGIN"
+        />
+        <Button
+          buttonStyle={styles.button}
+          raised
+          onPress={this.toGuest}
+          title="GUEST"
+        />
         <TouchableOpacity activeOpacity={0.5} onPress={this.toRegister}>
           <View style={styles.createAccountWrapper}>
             <Text style={styles.createAccountButton}>
@@ -89,7 +91,7 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#C43E38"
+    backgroundColor: "#FF6659"
   },
   titleWrapper: {
     paddingVertical: 50,
@@ -112,7 +114,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     height: 40,
     borderBottomWidth: 1,
-    borderBottomColor: "#3F9488"
+    borderBottomColor: "#03A9F4"
   },
   loginPreviewWrapper: {
     alignItems: "flex-start"
@@ -127,11 +129,10 @@ const styles = StyleSheet.create({
     color: "white"
   },
   button: {
-    backgroundColor: "#3F9488",
-    paddingVertical: 15,
+    backgroundColor: "#03A9F4",
+    marginVertical: 30,
     alignItems: "center",
-    justifyContent: "center",
-    marginTop: 30
+    justifyContent: "center"
   },
   buttonText: {
     color: "white",

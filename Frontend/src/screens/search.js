@@ -10,7 +10,7 @@ import {
 import BookAvatar from "../components/bookavatar.js";
 import UserAvatar from "../components/useravatar.js";
 import { Actions } from "react-native-router-flux";
-
+import { getUserById } from "../api/user";
 export default class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -23,10 +23,12 @@ export default class Search extends React.Component {
     this.setState({ selectedIndex });
   }
   toBookView(book) {
-    Actions.push("bookview", { book });
+    getUserById(book.ownerID).then(user => {
+      Actions.push("bookview", { book, user });
+    });
   }
-  toUserView(user, books) {
-    Actions.push("userview", { user, books });
+  toUserView(user) {
+    Actions.push("userview", { user, books: user.books });
   }
   searchBooks(term) {
     this.props.searchBooks(term);

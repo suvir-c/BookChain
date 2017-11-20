@@ -40,15 +40,9 @@ export function createBook(userID, book) {
   let author = book.author,
     rating = book.rating,
     title = book.name,
-    picture = book.cover;
+    cover = book.cover;
   return dispatch => {
-    return callCreateBookApi(
-      userID,
-      author,
-      rating,
-      title,
-      picture
-    ).then(() => {
+    return callCreateBookApi(userID, author, rating, title, cover).then(() => {
       dispatch(createBookAction(book));
     });
   };

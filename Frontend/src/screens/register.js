@@ -103,7 +103,7 @@ export default class Signup extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#C43E38"
+    backgroundColor: "#FF6659"
   },
   titleWrapper: {
     paddingVertical: 50,

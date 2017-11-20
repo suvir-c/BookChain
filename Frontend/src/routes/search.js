@@ -4,11 +4,12 @@ import { connect } from "react-redux";
 import { searchBooks, searchUsers } from "../actions/search";
 class SearchRoute extends React.Component {
   render() {
-    let { search, searchBooks, searchUsers } = this.props;
+    let { search, searchBooks, searchUsers, user } = this.props;
     console.log(search);
     return (
       <Search
         search={search}
+        user={user}
         searchBooks={searchBooks}
         searchUsers={searchUsers}
       />
@@ -17,7 +18,8 @@ class SearchRoute extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    search: state.search
+    search: state.search,
+    user: state.auth.user
   };
 };
 const mapDispatchToProps = dispatch => {

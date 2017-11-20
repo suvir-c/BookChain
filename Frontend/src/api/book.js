@@ -33,7 +33,7 @@ export function callCreateBookApi(
   author,
   rating,
   title,
-  picture,
+  cover,
   longitude,
   latitude
 ) {
@@ -41,17 +41,17 @@ export function callCreateBookApi(
     config.JAVA_ENDPOINT +
       "/demo/addBook?ownerID=" +
       userID +
-      "author=" +
+      "&author=" +
       author +
-      "rating=" +
+      "&rating=" +
       rating +
-      "title=" +
+      "&title=" +
       title +
-      "picture=" +
-      picture +
-      "longitude=" +
+      "&picture=" +
+      cover +
+      "&longitude=" +
       0 +
-      "latitude=" +
+      "&latitude=" +
       0
   ) //HARDCODED long + lat
     .then(data => data.text())

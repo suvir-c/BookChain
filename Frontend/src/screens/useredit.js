@@ -37,7 +37,7 @@ export default class UserEdit extends React.Component {
     return this.state.name.split(" ")[0][0] + this.state.name.split(" ")[1][0];
   }
   toCreateBookView() {
-    let createBook = this.props.createBook.bind(this, this.props.user.id);
+    let createBook = this.props.createBook.bind(this, this.props.user.userID);
     Actions.push("bookedit", { createBook });
   }
   render() {
@@ -64,8 +64,8 @@ export default class UserEdit extends React.Component {
             subtitleStyle={styles.subtitle}
             containerStyle={styles.feedList}
           >
-            {this.props.books &&
-              this.props.books.map((book, i) => {
+            {this.props.user.books &&
+              this.props.user.books.map((book, i) => {
                 return (
                   <BookAvatarRemove
                     onPress={() => this.toBookView(book)}

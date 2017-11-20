@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, StatusBar } from "react-native";
 
 import { TabViewAnimated, SceneMap } from "react-native-tab-view";
 

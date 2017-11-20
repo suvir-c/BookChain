@@ -1,5 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, ScrollView, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  RefreshControl
+} from "react-native";
 import { List, ListItem } from "react-native-elements";
 import BookAvatar from "../components/bookavatar.js";
 import { Actions } from "react-native-router-flux";
@@ -8,15 +14,32 @@ export default class Feed extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
+    this.state = {
+      refreshing: false
+    };
     props.getNearbyBooks(5);
-    setInterval(props.getNearbyBooks.bind(this, 5), 1000);
+    // setInterval(props.getNearbyBooks.bind(this, 5), 10000);
   }
   toBookView(book) {
     Actions.push("bookview", { book });
   }
+  _onRefresh() {
+    this.setState({ refreshing: true });
+    this.props.getNearbyBooks(5).then(() => {
+      this.setState({ refreshing: false });
+    });
+  }
   render() {
     return (
-      <ScrollView style={styles.listWrapper}>
+      <ScrollView
+        style={styles.listWrapper}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.refreshing}
+            onRefresh={this._onRefresh.bind(this)}
+          />
+        }
+      >
         {this.props.books && (
           <List containerStyle={styles.feedList}>
             {this.props.books.map((book, i) => {
