@@ -9,24 +9,23 @@ export default class BookAvatar extends React.Component {
 
   render() {
     return (
-      <View>
-        <ListItem
-          subtitleStyle={styles.subtitle}
-          titleStyle={styles.title}
-          style={styles.listItem}
-          roundAvatar
-          avatar={{ uri: this.props.cover }}
-          title={this.props.title}
-          subtitle={
-            this.props.author +
-            " | " +
-            this.props.rating +
-            " stars | " +
-            this.props.distance +
-            "MI"
-          }
-        />
-      </View>
+      <ListItem
+        subtitleStyle={styles.subtitle}
+        titleStyle={styles.title}
+        style={styles.listItem}
+        roundAvatar
+        chevronColor="white"
+        avatar={{ uri: this.props.cover }}
+        title={this.props.title}
+        subtitle={
+          this.props.author +
+          " | " +
+          this.props.rating +
+          " stars | " +
+          this.props.distance +
+          "MI"
+        }
+      />
     );
   }
 }

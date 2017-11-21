@@ -69,12 +69,11 @@ export default class Search extends React.Component {
                     <TouchableOpacity
                       key={i}
                       activeOpacity={0.5}
-                      onPress={book => this.toBookView(book)}
-                    >
+                      onPress={book => this.toBookView(book)}>
                       <BookAvatar
                         key={i}
-                        avatar={result.picture}
-                        name={result.title}
+                        cover={result.cover}
+                        title={result.title}
                         distance={result.distance}
                         author={result.author}
                         rating={result.rating}
@@ -91,8 +90,7 @@ export default class Search extends React.Component {
                   return (
                     <TouchableOpacity
                       activeOpacity={0.5}
-                      onPress={() => this.toUserView(user)}
-                    >
+                      onPress={() => this.toUserView(user)}>
                       <UserAvatar
                         key={i}
                         avatar={user.avatar}

@@ -63,8 +63,7 @@ export default class UserEdit extends React.Component {
           <Text style={styles.subheader}>Books</Text>
           <List
             subtitleStyle={styles.subtitle}
-            containerStyle={styles.feedList}
-          >
+            containerStyle={styles.feedList}>
             {this.props.user.books &&
               this.props.user.books.map((book, i) => {
                 return (
@@ -72,7 +71,7 @@ export default class UserEdit extends React.Component {
                     onPress={() => this.toBookView(book)}
                     key={i}
                     avatar={book.avatar}
-                    name={book.name}
+                    title={book.title}
                     cover={book.cover}
                     distance={book.distance}
                     author={book.author}

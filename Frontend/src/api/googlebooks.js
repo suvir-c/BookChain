@@ -11,5 +11,8 @@ export function getCoverForBook(term) {
       let id = data.docs[0].cover_i;
       console.log(data.docs);
       return "http://covers.openlibrary.org/b/id/" + id + "-M.jpg";
+    })
+    .catch(() => {
+      return "";
     });
 }

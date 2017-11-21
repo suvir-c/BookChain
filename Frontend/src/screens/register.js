@@ -51,7 +51,7 @@ export default class Signup extends React.Component {
           autoCorrect={false}
           onChangeText={email => this.setState({ email })}
         />
-        <FormLabel labelStyle={styles.input}>First Name</FormLabel>
+        <FormLabel labelStyle={styles.input}>Password</FormLabel>
         <FormInput
           inputStyle={styles.input}
           autoCapitalize="none"
@@ -69,7 +69,7 @@ export default class Signup extends React.Component {
         <FormInput
           inputStyle={styles.input}
           autoCorrect={false}
-          onChangeText={firstName => this.setState({ firstName })}
+          onChangeText={lastName => this.setState({ lastName })}
         />
         <View style={styles.buttonContainer}>
           <Button

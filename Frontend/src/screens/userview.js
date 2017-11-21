@@ -52,12 +52,11 @@ export default class UserView extends React.Component {
               <TouchableOpacity
                 key={i}
                 activityOpacity={0.5}
-                onPress={() => this.toBookView(book)}
-              >
+                onPress={() => this.toBookView(book)}>
                 <BookAvatar
                   key={i}
-                  avatar={book.avatar}
-                  name={book.name}
+                  cover={book.cover}
+                  title={book.title}
                   distance={book.distance}
                   author={book.author}
                   rating={book.rating}
